@@ -36,6 +36,7 @@ class Canvas(QWidget):
     def __init__(self, *args, **kwargs):
         super(Canvas, self).__init__(*args, **kwargs)
         # Initialise local state.
+        self.photo_type = 0
         self.mode = self.EDIT
         self.phase = 0
         self.shapes = []
@@ -63,6 +64,12 @@ class Canvas(QWidget):
         self.setFocusPolicy(Qt.WheelFocus)
         self.verified = False
         self.drawSquare = False
+        self.loading = False
+        self.photo_type_lst = ['front', 'back', 'invalid']
+
+
+    def get_photo_type_str(self):
+        return self.photo_type_lst[self.photo_type]
 
     def setDrawingColor(self, qColor):
         self.drawingLineColor = qColor
@@ -108,7 +115,7 @@ class Canvas(QWidget):
 
         # Update coordinates in status bar if image is opened
         window = self.parent().window()
-        if window.filePath is not None:
+        if window.filepath is not None:
             self.parent().window().labelCoordinates.setText(
                 'X: %d; Y: %d' % (pos.x(), pos.y()))
 
@@ -437,25 +444,57 @@ class Canvas(QWidget):
         if not self.boundedMoveShape(shape, point - offset):
             self.boundedMoveShape(shape, point + offset)
 
+    def set_loading(self, value):
+        print('Set loading', value)
+        self.loading = value
+        self.update()
+        self.repaint()
+
     def paintEvent(self, event):
+        if self.loading:
+            p = self._painter
+            p.begin(self)
+            p.setRenderHint(QPainter.Antialiasing)
+            p.setRenderHint(QPainter.HighQualityAntialiasing)
+            p.setRenderHint(QPainter.SmoothPixmapTransform)
+            myfont = p.font()
+            myfont.setPointSizeF(myfont.pointSizeF() * 2)
+            p.setFont(myfont)
+            print('Paint loading')
+            t = QTextOption()
+            t.setAlignment(Qt.AlignCenter)
+            print(self.size())
+            p.drawText(QRectF(0, 0, self.size().width(), self.size().height()), "Loading ...", t)
+            p.end()
+            return
         if not self.pixmap:
             return super(Canvas, self).paintEvent(event)
-
         p = self._painter
         p.begin(self)
         p.setRenderHint(QPainter.Antialiasing)
         p.setRenderHint(QPainter.HighQualityAntialiasing)
         p.setRenderHint(QPainter.SmoothPixmapTransform)
+        myfont = p.font()
+        myfont.setPointSizeF(myfont.pointSizeF() * 2)
+        p.setFont(myfont)
 
         p.scale(self.scale, self.scale)
         p.translate(self.offsetToCenter())
-
         p.drawPixmap(0, 0, self.pixmap)
         Shape.scale = self.scale
         for shape in self.shapes:
             if (shape.selected or not self._hideBackround) and self.isVisible(shape):
                 shape.fill = shape.selected or shape == self.hShape
                 shape.paint(p)
+        photo_type_text = "FRONT"
+        if self.photo_type == 1:
+            photo_type_text = "BACK"
+        elif self.photo_type == 2:
+            photo_type_text = "INVALID ID"
+        if self.pixmap.height() > 0:
+            t = QTextOption()
+            t.setAlignment(Qt.AlignCenter)
+            p.drawText(QRectF(0, 0, self.pixmap.width(), self.pixmap.height()), photo_type_text, t)
         if self.current:
             self.current.paint(p)
             self.line.paint(p)
@@ -484,7 +523,6 @@ class Canvas(QWidget):
             p.drawLine(self.prevPoint.x(), 0, self.prevPoint.x(), self.pixmap.height())
             p.drawLine(0, self.prevPoint.y(), self.pixmap.width(), self.prevPoint.y())
             print(1)
-
 
         self.setAutoFillBackground(True)
         if self.verified:
@@ -637,6 +675,9 @@ class Canvas(QWidget):
             self.update()
         elif key == Qt.Key_Return and self.canCloseShape():
             self.finalise()
+        elif key == Qt.Key_Space:
+            self.photo_type = (self.photo_type + 1) % 3
+            self.update()
 
         elif self.phase == 1 and key == Qt.Key_E and not self.selectedShape:
             if len(self.shapes) > 0:

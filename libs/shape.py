@@ -15,7 +15,7 @@ import sys
 DEFAULT_LINE_COLOR = QColor(0, 255, 0, 255)
 DEFAULT_FILL_COLOR = QColor(255, 0, 0, 32)
 DEFAULT_SELECT_LINE_COLOR = QColor(255, 0, 0)
-DEFAULT_SELECT_FILL_COLOR = QColor(0, 0, 255, 64)
+DEFAULT_SELECT_FILL_COLOR = QColor(0, 0, 255, 32)
 DEFAULT_VERTEX_FILL_COLOR = QColor(0, 255, 0, 255)
 DEFAULT_HVERTEX_FILL_COLOR = QColor(255, 0, 0)
 MIN_Y_LABEL = 10
@@ -89,7 +89,7 @@ class Shape(object):
             color = self.select_line_color if self.selected else self.line_color
             pen = QPen(color)
             # Try using integer sizes for smoother drawing(?)
-            pen.setWidth(max(1, int(round(2.0 / self.scale))))
+            pen.setWidth(max(1, int(round(10.0 / self.scale))))
             painter.setPen(pen)
 
             line_path = QPainterPath()
@@ -145,9 +145,9 @@ class Shape(object):
         else:
             self.vertex_fill_color = Shape.vertex_fill_color
         if shape == self.P_SQUARE:
-            path.addRect(point.x() - d / 2, point.y() - d / 2, d, d)
+            path.addRect(point.x() - d / 5, point.y() - d / 5, d, d)
         elif shape == self.P_ROUND:
-            path.addEllipse(point, d / 2.0, d / 2.0)
+            path.addEllipse(point, d / 5.0, d / 5.0)
         else:
             assert False, "unsupported vertex shape"
 
