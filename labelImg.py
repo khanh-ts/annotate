@@ -51,7 +51,7 @@ from libs.ustr import ustr
 from libs.version import __version__
 from libs.hashableQListWidgetItem import HashableQListWidgetItem
 
-__appname__ = 'labelImg'
+__appname__ = 'Label National ID'
 
 
 import numpy as np
@@ -145,9 +145,9 @@ class OpenLabelDialog(QDialog):
         layout = QVBoxLayout(self)
 
         self.images_dir_lbl = QLabel("Choose your images folder: ")
-        self.images_dir = QLineEdit("https://202.161.73.78:18008/user/khanh/files/working/common/hotdata/VNIDCards/data00/images/")
+        self.images_dir = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data00/images/")
         self.bbox_filename_lbl = QLabel("Choose your bbox filename:")
-        self.bbox_filename = QLineEdit("https://202.161.73.78:18008/user/khanh/files/working/common/hotdata/VNIDCards/data01/idcorners.csv")
+        self.bbox_filename = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data01/idcorners.csv")
         self.username_lbl = QLabel("Your username:")
         self.username = QLineEdit("khanh")
         self.password_lbl = QLabel("Your password:")
@@ -155,6 +155,7 @@ class OpenLabelDialog(QDialog):
         self.password.setEchoMode(QLineEdit.Password)
         self.label_filename_lbl = QLabel("Label filename:")
         self.label_filename = QLineEdit("C:/temp/VNIDCard.json")
+        self.setFixedSize(600, 700)
 
         layout.addWidget(self.images_dir_lbl)
         layout.addWidget(self.images_dir)
@@ -184,8 +185,11 @@ class OpenLabelDialog(QDialog):
         bbox_filename = dialog.bbox_filename.text()
         username = dialog.username.text()
         password = dialog.password.text()
+        images_dir = images_dir.replace('$user', username)
+        bbox_filename = bbox_filename.replace('$user', username)
         label_filename = dialog.label_filename.text()
         return images_dir, bbox_filename, username, password, label_filename, result == QDialog.Accepted
+
 
 class MainWindow(QMainWindow, WindowMixin):
     FIT_WINDOW, FIT_WIDTH, MANUAL_ZOOM = list(range(3))
@@ -995,6 +999,10 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.canvas.loadShapes(s)
 
+    def showEvent(self, a0: QShowEvent):
+        self.open_dir_dialog()
+        self.showMaximized()
+
     @staticmethod
     def format_shape(s):
         return dict(label=s.label,
@@ -1449,10 +1457,13 @@ class MainWindow(QMainWindow, WindowMixin):
         images_dir, bbox_filename, username, password, label_filename, ok = OpenLabelDialog.get_result()
         print(images_dir, bbox_filename, ok)
         if not ok:
-            return
+            return False
         self.canvas.set_loading(True)
         self.label_info_filepath = label_filename
+        self.label_info = json.load(open(self.label_info_filepath))
+        print(self.label_info)
         self.import_dir_images(images_dir, bbox_filename, username, password)
+        return True
 
     def import_dir_images(self, images_dir, bbox_filename, username, password):
         if bbox_filename != "":
@@ -1464,7 +1475,7 @@ class MainWindow(QMainWindow, WindowMixin):
                 print(hostname)
                 self.session = requests.Session()
                 data = {'username': username, 'password': password}
-                self.session.post(hostname+'hub/login', data=data, verify=False)
+                r = self.session.post(hostname+'hub/login', data=data, verify=False)
 
                 r = self.session.get(bbox_filename, verify=False)
                 r.encoding = 'utf-8'
