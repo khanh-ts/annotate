@@ -671,6 +671,7 @@ class MainWindow(QMainWindow, WindowMixin):
             if filename not in self.label_info.keys():
                 self.label_info[filename] = dict()
                 self.label_info[filename]['rotation'] = 0
+                self.label_info[filename]['photo_type'] = self.canvas.photo_type
 
             self.label_info[filename]['aligned'] = self.aligned_points.tolist()
 
@@ -685,6 +686,7 @@ class MainWindow(QMainWindow, WindowMixin):
         if filename not in self.label_info.keys():
             self.label_info[filename] = dict()
             self.label_info[filename]['rotation'] = 0
+            self.label_info[filename]['photo_type'] = self.canvas.photo_type
 
         self.aligned_points = np.array([(p.x(), p.y()) for p in self.canvas.shapes[0].points])
         self.label_info[filename]['aligned'] = self.aligned_points.tolist()
@@ -879,6 +881,7 @@ class MainWindow(QMainWindow, WindowMixin):
         if filename not in self.label_info.keys():
             self.label_info[filename] = dict()
             self.label_info[filename]['rotation'] = 0
+            self.label_info[filename]['photo_type'] = self.canvas.photo_type
         if self.phase == 0:
             self.aligned_points = np.array([(p.x(), p.y()) for p in self.canvas.shapes[0].points])
             self.label_info[filename]['aligned'] = self.aligned_points.tolist()
@@ -1263,10 +1266,15 @@ class MainWindow(QMainWindow, WindowMixin):
             self.image = image
             self.filepath = unicodeFilePath
             self.filename = filename
+            rotate_angle = 0
             if rotation is not None:
+                rotate_angle = rotation
+            elif filename in self.label_info.keys():
+                rotate_angle = self.label_info[filename]['rotation']
+            if rotate_angle != 0:
                 matrix = QTransform()
                 matrix.translate(image.width() / 2, image.height() / 2)
-                matrix.rotate(rotation)
+                matrix.rotate(rotate_angle)
                 image = image.transformed(matrix)
 
             self.canvas.loadPixmap(QPixmap.fromImage(image))

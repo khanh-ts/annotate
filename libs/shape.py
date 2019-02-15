@@ -35,7 +35,7 @@ class Shape(object):
     vertex_fill_color = DEFAULT_VERTEX_FILL_COLOR
     hvertex_fill_color = DEFAULT_HVERTEX_FILL_COLOR
     point_type = P_ROUND
-    point_size = 8
+    point_size = 15
     scale = 1.0
 
     def __init__(self, label=None, line_color=None, difficult=False, paintLabel=False):
@@ -145,9 +145,9 @@ class Shape(object):
         else:
             self.vertex_fill_color = Shape.vertex_fill_color
         if shape == self.P_SQUARE:
-            path.addRect(point.x() - d / 5, point.y() - d / 5, d, d)
+            path.addRect(point.x() - d / 2, point.y() - d / 2, d, d)
         elif shape == self.P_ROUND:
-            path.addEllipse(point, d / 5.0, d / 5.0)
+            path.addEllipse(point, d / 2.0, d / 2.0)
         else:
             assert False, "unsupported vertex shape"
 
