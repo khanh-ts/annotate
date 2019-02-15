@@ -154,7 +154,7 @@ class OpenLabelDialog(QDialog):
         self.password = QLineEdit("")
         self.password.setEchoMode(QLineEdit.Password)
         self.label_filename_lbl = QLabel("Label filename:")
-        self.label_filename = QLineEdit("C:/temp/VNIDCard.json")
+        self.label_filename = QLineEdit(os.path.join(os.path.expanduser('~'), 'VNIDCard.json'))
         self.setFixedSize(600, 700)
 
         layout.addWidget(self.images_dir_lbl)
@@ -1468,7 +1468,10 @@ class MainWindow(QMainWindow, WindowMixin):
             return False
         self.canvas.set_loading(True)
         self.label_info_filepath = label_filename
-        self.label_info = json.load(open(self.label_info_filepath))
+        if os.path.exists(self.label_info_filepath):
+            self.label_info = json.load(open(self.label_info_filepath))
+        else:
+            self.label_info = dict()
         print(self.label_info)
         self.import_dir_images(images_dir, bbox_filename, username, password)
         return True
