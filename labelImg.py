@@ -1462,18 +1462,21 @@ class MainWindow(QMainWindow, WindowMixin):
             self.loadPascalXMLByFilename(filename)
 
     def open_dir_dialog(self):
-        images_dir, bbox_filename, username, password, label_filename, ok = OpenLabelDialog.get_result()
-        print(images_dir, bbox_filename, ok)
-        if not ok:
-            return False
-        self.canvas.set_loading(True)
-        self.label_info_filepath = label_filename
-        if os.path.exists(self.label_info_filepath):
-            self.label_info = json.load(open(self.label_info_filepath))
-        else:
-            self.label_info = dict()
-        print(self.label_info)
-        self.import_dir_images(images_dir, bbox_filename, username, password)
+        continue_condition = True
+        while continue_condition:
+            images_dir, bbox_filename, username, password, label_filename, ok = OpenLabelDialog.get_result()
+            print(images_dir, bbox_filename, ok)
+            if not ok:
+                return False
+            self.canvas.set_loading(True)
+            self.label_info_filepath = label_filename
+            if os.path.exists(self.label_info_filepath):
+                self.label_info = json.load(open(self.label_info_filepath))
+            else:
+                self.label_info = dict()
+            print(self.label_info)
+            if self.import_dir_images(images_dir, bbox_filename, username, password):
+                continue_condition = False
         return True
 
     def import_dir_images(self, images_dir, bbox_filename, username, password):
@@ -1487,6 +1490,16 @@ class MainWindow(QMainWindow, WindowMixin):
                 self.session = requests.Session()
                 data = {'username': username, 'password': password}
                 r = self.session.post(hostname+'hub/login', data=data, verify=False)
+                if '<button id="logout" class="btn btn-sm navbar-btn">Logout</button>' not in r.text:
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Information)
+
+                    msg.setText("Could not login to server")
+                    msg.setWindowTitle("Login error")
+                    msg.setDetailedText(r.text)
+                    msg.setStandardButtons(QMessageBox.Ok)
+                    retval = msg.exec_()
+                    return False
 
                 r = self.session.get(bbox_filename, verify=False)
                 r.encoding = 'utf-8'
@@ -1514,6 +1527,7 @@ class MainWindow(QMainWindow, WindowMixin):
         for imgPath in self.mImgList:
             item = QListWidgetItem(imgPath)
             self.fileListWidget.addItem(item)
+        return True
 
     def verifyImg(self, _value=False):
         # Proceding next image without dialog if having any label
