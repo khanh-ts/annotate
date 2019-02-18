@@ -147,7 +147,7 @@ class OpenLabelDialog(QDialog):
         self.images_dir_lbl = QLabel("Choose your images folder: ")
         self.images_dir = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data00/images/")
         self.bbox_filename_lbl = QLabel("Choose your bbox filename:")
-        self.bbox_filename = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data01/idcorners.csv")
+        self.bbox_filename = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners.csv")
         self.username_lbl = QLabel("Your username:")
         self.username = QLineEdit("khanh")
         self.password_lbl = QLabel("Your password:")
@@ -222,8 +222,8 @@ class MainWindow(QMainWindow, WindowMixin):
         self.dirty = False
 
         # Edit frame mode
-        self.phase = 0
         self.save_status = False
+        self.image_data = None
 
         # Label info
         self.label_info = dict()
@@ -323,6 +323,8 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.dockFeatures = QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetFloatable
         self.dock.setFeatures(self.dock.features() ^ self.dockFeatures)
+
+        self.phase = 0
 
         # Actions
         action = partial(newAction, self)
@@ -428,7 +430,7 @@ class MainWindow(QMainWindow, WindowMixin):
         # Group zoom controls into a list for easier toggling.
         zoomActions = (self.zoomWidget, zoomIn, zoomOut,
                        zoomOrg, fitWindow, fitWidth)
-        self.zoomMode = self.MANUAL_ZOOM
+        self.zoomMode = self.FIT_WINDOW
         self.scalers = {
             self.FIT_WINDOW: self.scaleFitWindow,
             self.FIT_WIDTH: self.scaleFitWidth,
@@ -623,6 +625,16 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.setFocusPolicy(Qt.ClickFocus)
 
+    @property
+    def phase(self):
+        return self.__phase
+
+    @phase.setter
+    def phase(self, value):
+        self.__phase = value
+        if self.canvas is not None:
+            self.canvas.phase = value
+
     def keyReleaseEvent(self, event):
         modifiers = event.modifiers()
         if event.key() == Qt.Key_PageDown:
@@ -774,7 +786,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.shapesToItems.clear()
         self.labelList.clear()
         self.filepath = None
-        self.imageData = None
+        self.image_data = None
         self.labelFile = None
         self.canvas.resetState()
         self.labelCoordinates.clear()
@@ -868,12 +880,14 @@ class MainWindow(QMainWindow, WindowMixin):
         if not self.canvas.editing():
             return
         item = self.currentItem()
+        shape = self.canvas.selectedShape
         if not item:
             return
-        text = self.labelDialog.popUp(item.text())
+        pos = shape.points[2]
+        text = self.labelDialog.popUp(item.text(), pos=QPoint(pos.x() * shape.scale, pos.y() * shape.scale))
         if text is not None:
             item.setText(text)
-            item.setBackground(generateColorByText(text))
+            # item.setBackground(generateColorByText(text))
             self.setDirty()
 
     def save_label(self):
@@ -902,11 +916,7 @@ class MainWindow(QMainWindow, WindowMixin):
                 if filename in self.label_info:
                     self.aligned_points = np.array(self.label_info[filename]['aligned'])
                     rotation = self.label_info[filename]['rotation']
-                    self.phase = 0
-                    self.canvas.phase = 0
                 else:
-                    self.phase = 0
-                    self.canvas.phase = 0
                     rotation = None
                 self.load_file(filename, rotation)
 
@@ -958,7 +968,7 @@ class MainWindow(QMainWindow, WindowMixin):
         item = HashableQListWidgetItem(shape.label)
         item.setFlags(item.flags() | Qt.ItemIsUserCheckable)
         item.setCheckState(Qt.Checked)
-        item.setBackground(generateColorByText(shape.label))
+        # item.setBackground(generateColorByText(shape.label))
         self.itemsToShapes[item] = shape
         self.shapesToItems[shape] = item
         self.labelList.addItem(item)
@@ -1027,15 +1037,15 @@ class MainWindow(QMainWindow, WindowMixin):
             if self.usingPascalVocFormat is True:
                 if annotationFilePath[-4:].lower() != ".xml":
                     annotationFilePath += XML_EXT
-                self.labelFile.savePascalVocFormat(annotationFilePath, shapes, self.filepath, self.imageData,
+                self.labelFile.savePascalVocFormat(annotationFilePath, shapes, self.filepath, self.image_data,
                                                    self.lineColor.getRgb(), self.fillColor.getRgb())
             elif self.usingYoloFormat is True:
                 if annotationFilePath[-4:].lower() != ".txt":
                     annotationFilePath += TXT_EXT
-                self.labelFile.saveYoloFormat(annotationFilePath, shapes, self.filepath, self.imageData, self.labelHist,
+                self.labelFile.saveYoloFormat(annotationFilePath, shapes, self.filepath, self.image_data, self.labelHist,
                                               self.lineColor.getRgb(), self.fillColor.getRgb())
             else:
-                self.labelFile.save(annotationFilePath, shapes, self.filepath, self.imageData,
+                self.labelFile.save(annotationFilePath, shapes, self.filepath, self.image_data,
                                     self.lineColor.getRgb(), self.fillColor.getRgb())
             print('Image:{0} -> Annotation:{1}'.format(self.filepath, annotationFilePath))
             return True
@@ -1195,7 +1205,8 @@ class MainWindow(QMainWindow, WindowMixin):
         """Load the specified file, or the last opened file if None."""
         if len(self.label_info.keys()) > 0:
             # label_info_filename = os.path.basename(self.dirname) + '.' + socket.gethostname() + '.' + os.getlogin()
-            label_info_filepath = self.label_info_filepath  # os.path.join(os.path.dirname(self.dirname), label_info_filename + '.json')
+            label_info_filepath = self.label_info_filepath
+            # os.path.join(os.path.dirname(self.dirname), label_info_filename + '.json')
             with open(label_info_filepath, 'w') as fp:
                 json.dump(self.label_info, fp)
 
@@ -1209,46 +1220,35 @@ class MainWindow(QMainWindow, WindowMixin):
         file_path = ustr(file_path)
         print(file_path)
 
-        unicodeFilePath = ustr(file_path)
-        print(unicodeFilePath)
+        unicode_file_path = ustr(file_path)
+        print(unicode_file_path)
         # Tzutalin 20160906 : Add file list and dock to move faster
         # Highlight the file item
-        if unicodeFilePath and self.fileListWidget.count() > 0:
+        if unicode_file_path and self.fileListWidget.count() > 0:
             index = self.mImgList.index(filename)
-            fileWidgetItem = self.fileListWidget.item(index)
-            fileWidgetItem.setSelected(True)
+            file_widget_item = self.fileListWidget.item(index)
+            file_widget_item.setSelected(True)
 
-        if unicodeFilePath:  # and os.path.exists(unicodeFilePath):
-            if LabelFile.isLabelFile(unicodeFilePath):
-                try:
-                    self.labelFile = LabelFile(unicodeFilePath)
-                except LabelFileError as e:
-                    self.errorMessage(u'Error opening file',
-                                      (u"<p><b>%s</b></p>"
-                                       u"<p>Make sure <i>%s</i> is a valid label file.")
-                                      % (e, unicodeFilePath))
-                    self.status("Error reading %s" % unicodeFilePath)
-                    return False
-                self.imageData = self.labelFile.imageData
-                self.lineColor = QColor(*self.labelFile.lineColor)
-                self.fillColor = QColor(*self.labelFile.fillColor)
-                self.canvas.verified = self.labelFile.verified
+        if unicode_file_path:  # and os.path.exists(unicode_file_path):
+            # Load image:
+            # read data first and store for saving into label file.
+            if unicode_file_path[:4] == 'http':
+                print("get response")
+                response = self.session.get(unicode_file_path)
+                print("done response")
+                self.image_data = response.content
             else:
-                # Load image:
-                # read data first and store for saving into label file.
-                if unicodeFilePath[:4] == 'http':
-                    print("get response")
-                    response = self.session.get(unicodeFilePath)
-                    print("done response")
-                    self.imageData = response.content
-                else:
-                    self.imageData = read(unicodeFilePath, None)
-                self.labelFile = None
-                self.canvas.verified = False
+                self.image_data = read(unicode_file_path, None)
+
+            if filename in self.label_info.keys():
+                self.aligned_points = np.array(self.label_info[filename]['aligned'])
+
+            self.labelFile = None
+            self.canvas.verified = False
 
             from PIL import Image
             import io
-            image = Image.open(io.BytesIO(self.imageData))
+            image = Image.open(io.BytesIO(self.image_data))
             image = np.array(image)
             image = np.require(image, np.uint8, 'C')
             self.original_image = image
@@ -1259,12 +1259,12 @@ class MainWindow(QMainWindow, WindowMixin):
 
             if image.isNull():
                 self.errorMessage(u'Error opening file',
-                                  u"<p>Make sure <i>%s</i> is a valid image file." % unicodeFilePath)
-                self.status("Error reading %s" % unicodeFilePath)
+                                  u"<p>Make sure <i>%s</i> is a valid image file." % unicode_file_path)
+                self.status("Error reading %s" % unicode_file_path)
                 return False
-            self.status("Loaded %s" % os.path.basename(unicodeFilePath))
+            self.status("Loaded %s" % os.path.basename(unicode_file_path))
             self.image = image
-            self.filepath = unicodeFilePath
+            self.filepath = unicode_file_path
             self.filename = filename
             rotate_angle = 0
             if rotation is not None:
@@ -1303,7 +1303,6 @@ class MainWindow(QMainWindow, WindowMixin):
                     self.loadLabels(shapes)
                 else:
                     template = cv2.imread('template.jpg', 0)
-
 
             self.setClean()
             self.canvas.setEnabled(True)
@@ -1504,6 +1503,16 @@ class MainWindow(QMainWindow, WindowMixin):
                 r = self.session.get(bbox_filename, verify=False)
                 r.encoding = 'utf-8'
                 import io
+                if '<h1>404 : Not Found</h1>' in r.text:
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Information)
+
+                    msg.setText("File idcorners.csv is not found")
+                    msg.setWindowTitle("File error")
+                    msg.setDetailedText(r.text)
+                    msg.setStandardButtons(QMessageBox.Ok)
+                    retval = msg.exec_()
+                    return False
                 df = pd.read_csv(io.StringIO(r.text), low_memory=False)
                 self.mImgList = [st for st in df['file_path'].values]
                 self.suggest_corners = [

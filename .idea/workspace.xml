@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Haruki.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Haruki.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/labelImg.py" afterPath="$PROJECT_DIR$/labelImg.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/canvas.py" afterPath="$PROJECT_DIR$/libs/canvas.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/labelDialog.py" afterPath="$PROJECT_DIR$/libs/labelDialog.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/utils.py" afterPath="$PROJECT_DIR$/libs/utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/annotate$labelImg.coverage" NAME="labelImg Coverage Results" MODIFIED="1550228444420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/annotate$labelImg.coverage" NAME="labelImg Coverage Results" MODIFIED="1550490266322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -21,11 +25,31 @@
       <file leaf-file-name="labelImg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/labelImg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="1500" column="40" lean-forward="true" selection-start-line="1500" selection-start-column="40" selection-end-line="1500" selection-end-column="40" />
+            <state relative-caret-position="400">
+              <caret line="326" column="22" lean-forward="false" selection-start-line="326" selection-start-column="22" selection-end-line="326" selection-end-column="22" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="labelDialog.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/labelDialog.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="626">
+              <caret line="73" column="102" lean-forward="false" selection-start-line="73" selection-start-column="102" selection-end-line="73" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="80" column="19" lean-forward="false" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,8 +77,8 @@
       <file leaf-file-name="canvas.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/canvas.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8738">
-              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+            <state relative-caret-position="113">
+              <caret line="782" column="35" lean-forward="true" selection-start-line="782" selection-start-column="35" selection-end-line="782" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -63,8 +87,8 @@
       <file leaf-file-name="shape.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/shape.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="42" column="23" lean-forward="false" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="23" />
+            <state relative-caret-position="638">
+              <caret line="136" column="40" lean-forward="true" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -90,30 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="request.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Anaconda3/Lib/urllib/request.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44132">
-              <caret line="1323" column="0" lean-forward="false" selection-start-line="1323" selection-start-column="0" selection-end-line="1323" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Anaconda3/Lib/site-packages/pandas/io/common.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5950">
-              <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="parsers.py" pinned="false" current-in-tab="false">
         <entry file="file://C:/Anaconda3/Lib/site-packages/pandas/io/parsers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="758">
+            <state relative-caret-position="22644">
               <caret line="708" column="0" lean-forward="false" selection-start-line="708" selection-start-column="0" selection-end-line="708" selection-end-column="0" />
               <folding />
             </state>
@@ -124,23 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>def open_</find>
-      <find>load_file(</find>
-      <find>def paint</find>
-      <find>changeSavedirDialog</find>
-      <find>discardChangesDialog</find>
-      <find>mayContinue</find>
-      <find>closeEvent</find>
-      <find>mayCon</find>
-      <find>mayC</find>
-      <find>open_Dir</find>
-      <find>self.curr_index</find>
-      <find>def file</find>
-      <find>def load_file</find>
-      <find>photo_type</find>
-      <find>def rotate</find>
-      <find>rotate</find>
-      <find>cHANGEsavedir</find>
       <find>start</find>
       <find>show</find>
       <find>labelI</find>
@@ -154,6 +141,23 @@
       <find>def load_f</find>
       <find>def open_dir</find>
       <find>logout</find>
+      <find>setZoom</find>
+      <find>setZoom(</find>
+      <find>load_file</find>
+      <find>self.alig</find>
+      <find>self.aligned_points</find>
+      <find>import_dir_images</find>
+      <find>open_dir_dialog</find>
+      <find>FRONT</find>
+      <find>self.phase</find>
+      <find>color</find>
+      <find>def editLabel</find>
+      <find>label</find>
+      <find>labelCoordinates</find>
+      <find>self.shapes</find>
+      <find>point.</find>
+      <find>draw</find>
+      <find>def edit</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -165,8 +169,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/libs/canvas.py" />
         <option value="$PROJECT_DIR$/libs/shape.py" />
+        <option value="$PROJECT_DIR$/libs/canvas.py" />
+        <option value="$PROJECT_DIR$/libs/utils.py" />
+        <option value="$PROJECT_DIR$/libs/labelDialog.py" />
         <option value="$PROJECT_DIR$/labelImg.py" />
       </list>
     </option>
@@ -178,10 +184,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-13" />
+    <option name="x" value="5459" />
     <option name="y" value="-13" />
-    <option name="width" value="2762" />
-    <option name="height" value="1770" />
+    <option name="width" value="3866" />
+    <option name="height" value="2106" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -439,20 +445,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-13" y="-13" width="2762" height="1770" extended-state="6" />
+    <frame x="5459" y="-13" width="3866" height="2106" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26586103" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.311963" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291474" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26246223" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19323027" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26446727" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3959022" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -474,31 +480,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/labelImg.py</url>
-          <line>1202</line>
+          <line>1213</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="13" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Anaconda3/Lib/site-packages/pandas/io/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6426">
-          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Anaconda3/Lib/site-packages/pandas/io/parsers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14688">
-          <caret line="432" column="0" lean-forward="false" selection-start-line="432" selection-start-column="0" selection-end-line="432" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labelImg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -861,22 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/canvas.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8738">
-          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/shape.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="42" column="23" lean-forward="false" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -887,16 +861,48 @@
     </entry>
     <entry file="file://C:/Anaconda3/Lib/site-packages/pandas/io/parsers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
+        <state relative-caret-position="22644">
           <caret line="708" column="0" lean-forward="false" selection-start-line="708" selection-start-column="0" selection-end-line="708" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="80" column="19" lean-forward="false" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/canvas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="782" column="35" lean-forward="true" selection-start-line="782" selection-start-column="35" selection-end-line="782" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/shape.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="136" column="40" lean-forward="true" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/labelDialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="73" column="102" lean-forward="false" selection-start-line="73" selection-start-column="102" selection-end-line="73" selection-end-column="102" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/labelImg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="1500" column="40" lean-forward="true" selection-start-line="1500" selection-start-column="40" selection-end-line="1500" selection-end-column="40" />
+        <state relative-caret-position="400">
+          <caret line="326" column="22" lean-forward="false" selection-start-line="326" selection-start-column="22" selection-end-line="326" selection-end-column="22" />
           <folding>
             <element signature="e#46#65#0" expanded="true" />
           </folding>

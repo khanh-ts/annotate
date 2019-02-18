@@ -486,15 +486,17 @@ class Canvas(QWidget):
             if (shape.selected or not self._hideBackround) and self.isVisible(shape):
                 shape.fill = shape.selected or shape == self.hShape
                 shape.paint(p)
-        photo_type_text = "FRONT"
-        if self.photo_type == 1:
-            photo_type_text = "BACK"
-        elif self.photo_type == 2:
-            photo_type_text = "INVALID ID"
-        if self.pixmap.height() > 0:
-            t = QTextOption()
-            t.setAlignment(Qt.AlignCenter)
-            p.drawText(QRectF(0, 0, self.pixmap.width(), self.pixmap.height()), photo_type_text, t)
+        if self.phase == 0:
+            photo_type_text = "FRONT"
+            if self.photo_type == 1:
+                photo_type_text = "BACK"
+            elif self.photo_type == 2:
+                photo_type_text = "INVALID ID"
+            if self.pixmap.height() > 0:
+                t = QTextOption()
+                t.setAlignment(Qt.AlignCenter)
+                p.drawText(QRectF(0, 0, self.pixmap.width(), self.pixmap.height()), photo_type_text, t)
+
         if self.current:
             self.current.paint(p)
             self.line.paint(p)
