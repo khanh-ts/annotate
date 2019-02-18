@@ -475,7 +475,8 @@ class Canvas(QWidget):
         p.setRenderHint(QPainter.HighQualityAntialiasing)
         p.setRenderHint(QPainter.SmoothPixmapTransform)
         myfont = p.font()
-        myfont.setPointSizeF(myfont.pointSizeF() * 2)
+        myfont.setPointSizeF(35)
+        myfont.setBold(True)
         p.setFont(myfont)
 
         p.scale(self.scale, self.scale)

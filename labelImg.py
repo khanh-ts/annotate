@@ -145,7 +145,7 @@ class OpenLabelDialog(QDialog):
         layout = QVBoxLayout(self)
 
         self.images_dir_lbl = QLabel("Choose your images folder: ")
-        self.images_dir = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data00/images/")
+        self.images_dir = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data01/images/")
         self.bbox_filename_lbl = QLabel("Choose your bbox filename:")
         self.bbox_filename = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners.csv")
         self.username_lbl = QLabel("Your username:")
@@ -194,9 +194,11 @@ class OpenLabelDialog(QDialog):
 class MainWindow(QMainWindow, WindowMixin):
     FIT_WINDOW, FIT_WIDTH, MANUAL_ZOOM = list(range(3))
 
-    def __init__(self, defaultFilename=None, defaultPrefdefClassFile=None, defaultSaveDir=None):
+    def __init__(self, defaultFilename=None, defaultPrefdefClassFile=None, defaultSaveDir=None, start_idx=-1, end_idx=-1):
         super(MainWindow, self).__init__()
         self.setWindowTitle(__appname__)
+        self.start_idx = start_idx
+        self.end_idx = end_idx
 
         # Load setting in the main thread
         self.settings = Settings()
@@ -1518,9 +1520,12 @@ class MainWindow(QMainWindow, WindowMixin):
                 self.suggest_corners = [
                     [(x[0], x[1]), (x[2], x[3]), (x[4], x[5]), (x[6], x[7])]
                     for x in df[
-                        ['top-left-x', 'top-left-y', 'top-right-x', 'top-right-y',
-                         'bottom-right-x', 'bottom-right-y', 'bottom-left-x', 'bottom-left-y']].values
+                        ['top-left-y', 'top-left-x', 'top-right-y', 'top-right-x',
+                         'bottom-right-y', 'bottom-right-x', 'bottom-left-y', 'bottom-left-x']].values
                 ]
+                if self.start_idx != -1 and self.end_idx != -1:
+                    self.mImgList = self.mImgList[self.start_idx:self.end_idx]
+                    self.suggest_corners = self.suggest_corners[self.start_idx:self.end_idx]
                 print(self.suggest_corners[:5])
                 print(self.mImgList[:5])
         else:
@@ -1690,7 +1695,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
     def discardChangesDialog(self):
         yes, no = QMessageBox.Yes, QMessageBox.No
-        msg = u'You have unsaved changes, proceed anyway?'
+        msg = u'Do you finish labelling this image?'
         return yes == QMessageBox.warning(self, u'Attention', msg, yes | no)
 
     def errorMessage(self, title, message):
@@ -1807,11 +1812,16 @@ def get_main_app(argv=[]):
     app.setWindowIcon(newIcon("app"))
     # Tzutalin 201705+: Accept extra agruments to change predefined class file
     # Usage : labelImg.py image predefClassFile saveDir
-    win = MainWindow(argv[1] if len(argv) >= 2 else None,
-                     argv[2] if len(argv) >= 3 else os.path.join(
-                         os.path.dirname(sys.argv[0]),
-                         'data', 'predefined_classes.txt'),
-                     argv[3] if len(argv) >= 4 else None)
+    # win = MainWindow(argv[1] if len(argv) >= 2 else None,
+    #                  argv[2] if len(argv) >= 3 else os.path.join(
+    #                      os.path.dirname(sys.argv[0]),
+    #                      'data', 'predefined_classes.txt'),
+    #                  argv[3] if len(argv) >= 4 else None)
+    win = MainWindow(
+        defaultPrefdefClassFile=os.path.join(os.path.dirname(sys.argv[0]), 'data', 'predefined_classes.txt'),
+        start_idx=int(argv[1]) if len(argv) >= 2 else -1,
+        end_idx=int(argv[2]) if len(argv) >= 3 else -1
+    )
     win.show()
     return app, win
 
