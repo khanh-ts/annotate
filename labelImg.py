@@ -1203,6 +1203,8 @@ class MainWindow(QMainWindow, WindowMixin):
 
     def load_file(self, filename=None, rotation=None):
         self.canvas.set_loading(True)
+        self.settings['curr_index'] = self.curr_index
+
         file_path = self.dirname + filename
         """Load the specified file, or the last opened file if None."""
         if len(self.label_info.keys()) > 0:
@@ -1541,6 +1543,7 @@ class MainWindow(QMainWindow, WindowMixin):
         for imgPath in self.mImgList:
             item = QListWidgetItem(imgPath)
             self.fileListWidget.addItem(item)
+        self.fileListWidget.setCurrentIndex(QModelIndex()..seleself.curr_index)
         return True
 
     def verifyImg(self, _value=False):
@@ -1607,8 +1610,11 @@ class MainWindow(QMainWindow, WindowMixin):
             return
         filename = None
         if self.filepath is None:
-            self.curr_index = 0
-            filename = self.mImgList[0]
+            if self.settings.get('curr_index') is None:
+                self.curr_index = 0
+            else:
+                self.curr_index = self.settings['curr_index']
+            filename = self.mImgList[self.curr_index]
         else:
             self.save_label()
             self.curr_index = self.mImgList.index(self.filename)
