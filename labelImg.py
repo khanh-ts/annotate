@@ -1543,7 +1543,6 @@ class MainWindow(QMainWindow, WindowMixin):
         for imgPath in self.mImgList:
             item = QListWidgetItem(imgPath)
             self.fileListWidget.addItem(item)
-        self.fileListWidget.setCurrentIndex(QModelIndex()..seleself.curr_index)
         return True
 
     def verifyImg(self, _value=False):
