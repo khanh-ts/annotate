@@ -13,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/annotate$labelImg.coverage" NAME="labelImg Coverage Results" MODIFIED="1550653626801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/annotate$labelImg.coverage" NAME="labelImg Coverage Results" MODIFIED="1550657059984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -21,8 +21,8 @@
       <file leaf-file-name="labelImg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/labelImg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-620">
-              <caret line="287" column="47" lean-forward="false" selection-start-line="287" selection-start-column="47" selection-end-line="287" selection-end-column="47" />
+            <state relative-caret-position="400">
+              <caret line="385" column="29" lean-forward="false" selection-start-line="385" selection-start-column="29" selection-end-line="385" selection-end-column="29" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
@@ -124,12 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.phase</find>
-      <find>color</find>
-      <find>def editLabel</find>
-      <find>label</find>
-      <find>labelCoordinates</find>
-      <find>self.shapes</find>
       <find>point.</find>
       <find>draw</find>
       <find>def edit</find>
@@ -138,14 +132,12 @@
       <find>setting</find>
       <find>settings</find>
       <find>openNext</find>
-      <find>def open_next</find>
       <find>self.settings.</find>
       <find>self.setting</find>
       <find>close</find>
       <find>self.settings[</find>
       <find>self.settings.get</find>
       <find>selected</find>
-      <find>fileListWidget</find>
       <find>load_file</find>
       <find>self.settings</find>
       <find>def open</find>
@@ -154,6 +146,14 @@
       <find>labellist</find>
       <find>listLayout</find>
       <find>self.dock</find>
+      <find>self.fileListWidget.setc</find>
+      <find>self.fileListWidget</find>
+      <find>fileListWidget</find>
+      <find>open_next</find>
+      <find>def open_next</find>
+      <find>Ctrl+R</find>
+      <find>Ctrl+t</find>
+      <find>Ctrl+</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -445,7 +445,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/labelImg.py</url>
-          <line>1220</line>
+          <line>1221</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
@@ -846,8 +846,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/labelImg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-620">
-          <caret line="287" column="47" lean-forward="false" selection-start-line="287" selection-start-column="47" selection-end-line="287" selection-end-column="47" />
+        <state relative-caret-position="400">
+          <caret line="385" column="29" lean-forward="false" selection-start-line="385" selection-start-column="29" selection-end-line="385" selection-end-column="29" />
           <folding>
             <element signature="e#46#65#0" expanded="true" />
           </folding>

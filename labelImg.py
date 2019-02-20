@@ -343,7 +343,7 @@ class MainWindow(QMainWindow, WindowMixin):
                          'Ctrl+u', 'open', getStr('openDir'))
 
         changeSavedir = action(getStr('changeSaveDir'), self.changeSavedirDialog,
-                               'Ctrl+r', 'open', getStr('changeSavedAnnotationDir'), enabled=False)
+                               'Ctrl+Shift+r', 'open', getStr('changeSavedAnnotationDir'), enabled=False)
 
         openAnnotation = action(getStr('openAnnotation'), self.openAnnotationDialog,
                                 'Ctrl+Shift+O', 'open', getStr('openAnnotationDetail'))
@@ -398,15 +398,15 @@ class MainWindow(QMainWindow, WindowMixin):
                          enabled=False)
 
         align_crop = action('&Align && Crop', partial(self.align_crop, False),
-                            'Ctrl+R', 'hide', getStr('showAllBoxDetail'),
+                            'Ctrl+Shift+A', 'hide', getStr('showAllBoxDetail'),
                             enabled=False)
 
         rotateLeft = action('&Rotate -90', partial(self.rotate, -90),
-                         'Ctrl+R', 'hide', getStr('showAllBoxDetail'),
+                         'Ctrl+r', 'hide', getStr('showAllBoxDetail'),
                          enabled=True)
 
         rotateRight = action('&Rotate +90', partial(self.rotate, 90),
-                            'Ctrl+T', 'hide', getStr('showAllBoxDetail'),
+                            'Ctrl+t', 'hide', getStr('showAllBoxDetail'),
                             enabled=True)
 
         help = action(getStr('tutorial'), self.showTutorialDialog, None, 'help', getStr('tutorialDetail'))
@@ -1208,6 +1208,8 @@ class MainWindow(QMainWindow, WindowMixin):
         self.canvas.set_loading(True)
         self.settings['curr_index'] = self.curr_index
         self.save_settings()
+        print('Current index:', self.curr_index)
+        self.fileListWidget.setCurrentRow(self.curr_index)
 
         file_path = self.dirname + filename
         """Load the specified file, or the last opened file if None."""
@@ -1541,13 +1543,16 @@ class MainWindow(QMainWindow, WindowMixin):
                     self.mImgList = self.mImgList[self.start_idx:self.end_idx]
                     self.suggest_corners = self.suggest_corners[self.start_idx:self.end_idx]
                 else:
-                    annotated_files = list(self.label_info.keys())
-                    annotated_ids = [self.mImgList.index(f) for f in annotated_files]
-                    unannotated_ids = list(set(range(len(self.mImgList))) - set(annotated_ids))
-                    ids = annotated_ids + unannotated_ids
-                    self.mImgList = list(np.array(self.mImgList)[ids])
-                    self.suggest_corners = list(np.array(self.suggest_corners)[ids])
-                    self.settings['curr_index'] = len(annotated_ids)
+                    try:
+                        annotated_files = list(self.label_info.keys())
+                        annotated_ids = [self.mImgList.index(f) for f in annotated_files]
+                        unannotated_ids = list(set(range(len(self.mImgList))) - set(annotated_ids))
+                        ids = annotated_ids + unannotated_ids
+                        self.mImgList = list(np.array(self.mImgList)[ids])
+                        self.suggest_corners = list(np.array(self.suggest_corners)[ids])
+                        self.settings['curr_index'] = len(annotated_ids)
+                    except Exception as error:
+                        print(error)
                 print(self.suggest_corners[:5])
                 print(self.mImgList[:5])
         else:
@@ -1563,6 +1568,7 @@ class MainWindow(QMainWindow, WindowMixin):
         for imgPath in self.mImgList:
             item = QListWidgetItem(imgPath)
             self.fileListWidget.addItem(item)
+        self.fileListWidget.setCurrentRow(self.curr_index)
         return True
 
     def verifyImg(self, _value=False):
