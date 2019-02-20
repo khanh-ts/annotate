@@ -139,17 +139,18 @@ class WindowMixin(object):
 
 
 class OpenLabelDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, images_dir, bbox_filename, parent=None):
         super(OpenLabelDialog, self).__init__(parent)
 
         layout = QVBoxLayout(self)
 
         self.images_dir_lbl = QLabel("Choose your images folder: ")
-        self.images_dir = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data01/images/")
+        self.images_dir = QLineEdit(images_dir)
         self.bbox_filename_lbl = QLabel("Choose your bbox filename:")
-        self.bbox_filename = QLineEdit("https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners.csv")
+        self.bbox_filename = QLineEdit(bbox_filename)
         self.username_lbl = QLabel("Your username:")
-        self.username = QLineEdit("khanh")
+        self.username = QLineEdit("")
+        self.username.setFocusPolicy(Qt.StrongFocus)
         self.password_lbl = QLabel("Your password:")
         self.password = QLineEdit("")
         self.password.setEchoMode(QLineEdit.Password)
@@ -178,8 +179,9 @@ class OpenLabelDialog(QDialog):
 
     # static method to create the dialog and return (date, time, accepted)
     @staticmethod
-    def get_result(parent=None):
-        dialog = OpenLabelDialog(parent)
+    def get_result(images_dir, bbox_filename, parent=None):
+        dialog = OpenLabelDialog(images_dir, bbox_filename, parent)
+        dialog.username.setFocus()
         result = dialog.exec_()
         images_dir = dialog.images_dir.text()
         bbox_filename = dialog.bbox_filename.text()
@@ -325,7 +327,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.dockFeatures = QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetFloatable
         self.dock.setFeatures(self.dock.features() ^ self.dockFeatures)
-
+        self.dock.close()
         self.phase = 0
 
         # Actions
@@ -1471,7 +1473,12 @@ class MainWindow(QMainWindow, WindowMixin):
     def open_dir_dialog(self):
         continue_condition = True
         while continue_condition:
-            images_dir, bbox_filename, username, password, label_filename, ok = OpenLabelDialog.get_result()
+            images_dir = self.settings.get('images_dir', default= "https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data01/images/")
+            bbox_filename = self.settings.get('bbox_filename', default="https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners.csv")
+            images_dir, bbox_filename, username, password, label_filename, ok = \
+                OpenLabelDialog.get_result(images_dir, bbox_filename)
+            self.settings['images_dir'] = images_dir
+            self.settings['bbox_filename'] = bbox_filename
             print(images_dir, bbox_filename, ok)
             if not ok:
                 return False
