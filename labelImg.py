@@ -1204,6 +1204,7 @@ class MainWindow(QMainWindow, WindowMixin):
     def load_file(self, filename=None, rotation=None):
         self.canvas.set_loading(True)
         self.settings['curr_index'] = self.curr_index
+        self.save_settings()
 
         file_path = self.dirname + filename
         """Load the specified file, or the last opened file if None."""
@@ -1384,6 +1385,9 @@ class MainWindow(QMainWindow, WindowMixin):
         return w / self.canvas.pixmap.width()
 
     def closeEvent(self, event):
+        self.save_settings()
+
+    def save_settings(self):
         settings = self.settings
         # If it loads images from dir, don't load it at the begining
         if self.dirname is None:
