@@ -10,6 +10,7 @@ import sys
 import subprocess
 
 import requests
+import numpy as np
 import pandas as pd
 
 from functools import partial
@@ -1539,6 +1540,14 @@ class MainWindow(QMainWindow, WindowMixin):
                 if self.start_idx != -1 and self.end_idx != -1:
                     self.mImgList = self.mImgList[self.start_idx:self.end_idx]
                     self.suggest_corners = self.suggest_corners[self.start_idx:self.end_idx]
+                else:
+                    annotated_files = list(self.label_info.keys())
+                    annotated_ids = [self.mImgList.index(f) for f in annotated_files]
+                    unannotated_ids = list(set(range(len(self.mImgList))) - set(annotated_ids))
+                    ids = annotated_ids + unannotated_ids
+                    self.mImgList = list(np.array(self.mImgList)[ids])
+                    self.suggest_corners = list(np.array(self.suggest_corners)[ids])
+                    self.settings['curr_index'] = len(annotated_ids)
                 print(self.suggest_corners[:5])
                 print(self.mImgList[:5])
         else:
