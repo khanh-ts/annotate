@@ -402,11 +402,11 @@ class MainWindow(QMainWindow, WindowMixin):
                             enabled=False)
 
         rotateLeft = action('&Rotate -90', partial(self.rotate, -90),
-                         'Ctrl+r', 'hide', getStr('showAllBoxDetail'),
+                         'r', 'hide', getStr('showAllBoxDetail'),
                          enabled=True)
 
         rotateRight = action('&Rotate +90', partial(self.rotate, 90),
-                            'Ctrl+t', 'hide', getStr('showAllBoxDetail'),
+                            't', 'hide', getStr('showAllBoxDetail'),
                             enabled=True)
 
         help = action(getStr('tutorial'), self.showTutorialDialog, None, 'help', getStr('tutorialDetail'))
@@ -649,9 +649,9 @@ class MainWindow(QMainWindow, WindowMixin):
             self.open_previous_img()
         elif event.key() == Qt.Key_S and modifiers == Qt.ControlModifier:
             self.save_status = True
-        elif event.key() == Qt.Key_R and modifiers == Qt.Key_Control:
+        elif event.key() == Qt.Key_R:
             self.rotate(-90)
-        elif event.key() == Qt.Key_T and modifiers == Qt.Key_Control:
+        elif event.key() == Qt.Key_T:
             self.rotate(90)
         if event.key() == Qt.Key_Control:
             self.canvas.setDrawingShapeToSquare(False)
