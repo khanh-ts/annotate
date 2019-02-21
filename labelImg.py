@@ -642,12 +642,17 @@ class MainWindow(QMainWindow, WindowMixin):
 
     def keyReleaseEvent(self, event):
         modifiers = event.modifiers()
+
         if event.key() == Qt.Key_PageDown:
             self.open_next_img()
-        if event.key() == Qt.Key_PageUp:
+        elif event.key() == Qt.Key_PageUp:
             self.open_previous_img()
         elif event.key() == Qt.Key_S and modifiers == Qt.ControlModifier:
             self.save_status = True
+        elif event.key() == Qt.Key_R and modifiers == Qt.Key_Control:
+            self.rotate(-90)
+        elif event.key() == Qt.Key_T and modifiers == Qt.Key_Control:
+            self.rotate(90)
         if event.key() == Qt.Key_Control:
             self.canvas.setDrawingShapeToSquare(False)
 
@@ -1477,7 +1482,7 @@ class MainWindow(QMainWindow, WindowMixin):
         continue_condition = True
         while continue_condition:
             images_dir = self.settings.get('images_dir', default= "https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data01/images/")
-            bbox_filename = self.settings.get('bbox_filename', default="https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners.csv")
+            bbox_filename = self.settings.get('bbox_filename', default="https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners_splited_csv/xxx.csv")
             images_dir, bbox_filename, username, password, label_filename, ok = \
                 OpenLabelDialog.get_result(images_dir, bbox_filename)
             self.settings['images_dir'] = images_dir
@@ -1525,7 +1530,7 @@ class MainWindow(QMainWindow, WindowMixin):
                     msg = QMessageBox()
                     msg.setIcon(QMessageBox.Information)
 
-                    msg.setText("File idcorners.csv is not found")
+                    msg.setText("File " + bbox_filename + " is not found")
                     msg.setWindowTitle("File error")
                     msg.setDetailedText(r.text)
                     msg.setStandardButtons(QMessageBox.Ok)
