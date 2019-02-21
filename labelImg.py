@@ -402,11 +402,11 @@ class MainWindow(QMainWindow, WindowMixin):
                             enabled=False)
 
         rotateLeft = action('&Rotate -90', partial(self.rotate, -90),
-                         'r', 'hide', getStr('showAllBoxDetail'),
+                         'Ctrl+r', 'hide', getStr('showAllBoxDetail'),
                          enabled=True)
 
         rotateRight = action('&Rotate +90', partial(self.rotate, 90),
-                            't', 'hide', getStr('showAllBoxDetail'),
+                            'Ctrl+t', 'hide', getStr('showAllBoxDetail'),
                             enabled=True)
 
         help = action(getStr('tutorial'), self.showTutorialDialog, None, 'help', getStr('tutorialDetail'))
