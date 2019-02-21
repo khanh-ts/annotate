@@ -1732,7 +1732,7 @@ class MainWindow(QMainWindow, WindowMixin):
     def discardChangesDialog(self):
         yes, no = QMessageBox.Yes, QMessageBox.No
         msg = u'Do you finish labelling this image?'
-        return yes == QMessageBox.warning(self, u'Attention', msg, yes | no)
+        return yes == QMessageBox.warning(self, u'Attention', msg, yes | no, defaultButton=yes)
 
     def errorMessage(self, title, message):
         return QMessageBox.critical(self, title,
