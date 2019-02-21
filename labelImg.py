@@ -643,9 +643,9 @@ class MainWindow(QMainWindow, WindowMixin):
     def keyReleaseEvent(self, event):
         modifiers = event.modifiers()
 
-        if event.key() == Qt.Key_PageDown:
+        if event.key() == Qt.Key_PageDown or event.key() == Qt.Key_N:
             self.open_next_img()
-        elif event.key() == Qt.Key_PageUp:
+        elif event.key() == Qt.Key_PageUp or event.key() == Qt.Key_B:
             self.open_previous_img()
         elif event.key() == Qt.Key_S and modifiers == Qt.ControlModifier:
             self.save_status = True

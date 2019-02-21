@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/labelImg.py" afterPath="$PROJECT_DIR$/labelImg.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +21,8 @@
       <file leaf-file-name="labelImg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/labelImg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="653" column="36" lean-forward="false" selection-start-line="653" selection-start-column="36" selection-end-line="653" selection-end-column="36" />
+            <state relative-caret-position="211">
+              <caret line="643" column="37" lean-forward="true" selection-start-line="643" selection-start-column="37" selection-end-line="643" selection-end-column="37" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
@@ -844,8 +845,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/labelImg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="653" column="36" lean-forward="false" selection-start-line="653" selection-start-column="36" selection-end-line="653" selection-end-column="36" />
+        <state relative-caret-position="211">
+          <caret line="643" column="37" lean-forward="true" selection-start-line="643" selection-start-column="37" selection-end-line="643" selection-end-column="37" />
           <folding>
             <element signature="e#46#65#0" expanded="true" />
           </folding>
