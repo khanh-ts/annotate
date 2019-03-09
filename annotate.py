@@ -203,6 +203,8 @@ class MainWindow(QMainWindow, WindowMixin):
         self.start_idx = start_idx
         self.end_idx = end_idx
 
+        self.suggest_label_info = None
+
         # Load setting in the main thread
         self.settings = Settings()
         self.settings.load()
@@ -1257,6 +1259,8 @@ class MainWindow(QMainWindow, WindowMixin):
 
             if filename in self.label_info.keys():
                 self.aligned_points = np.array(self.label_info[filename]['aligned'])
+            elif (self.suggest_label_info is not None) and (filename in self.suggest_label_info.keys()):
+                self.aligned_points = np.array(self.suggest_label_info[filename]['aligned'])
 
             self.labelFile = None
             self.canvas.verified = False
@@ -1264,11 +1268,31 @@ class MainWindow(QMainWindow, WindowMixin):
             from PIL import Image
             import io
             image = Image.open(io.BytesIO(self.image_data))
+            rotate_angle = 0
+            if rotation is not None:
+                rotate_angle = rotation
+            elif filename in self.label_info.keys():
+                rotate_angle = self.label_info[filename]['rotation']
+            elif (self.suggest_label_info is not None) and (filename in self.suggest_label_info.keys()):
+                rotate_angle = self.suggest_label_info[filename]['rotation']
+            if rotate_angle != 0:
+                rotate_angle = (rotate_angle + 360) % 360
+                if rotate_angle == 90:
+                    image = image.transpose(Image.ROTATE_270)
+                elif rotate_angle == 270:
+                    image = image.transpose(Image.ROTATE_90)
+                elif rotate_angle == 180:
+                    image = image.transpose(Image.ROTATE_180)
+                else:
+                    raise ValueError('Not support this angle')
+                
             image = np.array(image)
+            image_shape = image.shape
             image = np.require(image, np.uint8, 'C')
             self.original_image = image
             if self.phase == 1:
                 image = four_point_transform(image, self.aligned_points)
+
             image = QImage(image.data, image.shape[1], image.shape[0], image.strides[0], QImage.Format_RGB888)
             # image = QImage.fromData(self.imageData)
 
@@ -1281,16 +1305,6 @@ class MainWindow(QMainWindow, WindowMixin):
             self.image = image
             self.filepath = unicode_file_path
             self.filename = filename
-            rotate_angle = 0
-            if rotation is not None:
-                rotate_angle = rotation
-            elif filename in self.label_info.keys():
-                rotate_angle = self.label_info[filename]['rotation']
-            if rotate_angle != 0:
-                matrix = QTransform()
-                matrix.translate(image.width() / 2, image.height() / 2)
-                matrix.rotate(rotate_angle)
-                image = image.transformed(matrix)
 
             self.canvas.loadPixmap(QPixmap.fromImage(image))
             if self.labelFile:
@@ -1301,11 +1315,11 @@ class MainWindow(QMainWindow, WindowMixin):
                     self.canvas.photo_type = self.label_info[filename]['photo_type']
                 else:
                     self.canvas.photo_type = 0
-                    if self.suggest_corners[self.curr_index][0][0] == -1:
+                    if self.suggest_corners[self.curr_index][1][0] == -1:
                         shapes = [('', [(10, 10), (image.width() - 20, 10), (image.width() - 20, image.height() - 20),
                                     (10, image.height() - 20)], None, None, False)]
                     else:
-                        shapes = [('', [(x[0], x[1]) for x in self.suggest_corners[self.curr_index]], None, None, False)]
+                        shapes = [('', [(x[0], x[1]) for x in self.suggest_corners[self.curr_index][1:]], None, None, False)]
                     print(self.curr_index)
                     print(self.suggest_corners[self.curr_index])
                     print(shapes)
@@ -1316,8 +1330,6 @@ class MainWindow(QMainWindow, WindowMixin):
                 if (filename in self.label_info.keys()) and ('bb' in self.label_info[filename].keys()):
                     shapes = [(item[0], item[1], None, None, None) for item in self.label_info[filename]['bb']]
                     self.loadLabels(shapes)
-                else:
-                    template = cv2.imread('template.jpg', 0)
 
             self.setClean()
             self.canvas.setEnabled(True)
@@ -1547,10 +1559,12 @@ class MainWindow(QMainWindow, WindowMixin):
                              'bottom-right-y', 'bottom-right-x', 'bottom-left-y', 'bottom-left-x']].values
                     ]
                 elif bbox_filename[-4:] == 'json':
-                    self.label_info = json.loads(r.text)
+                    self.suggest_label_info = json.loads(r.text)
                     self.mImgList = []
                     self.suggest_corners = []
-                    for name, info in self.label_info.items():
+                    for name, info in self.suggest_label_info.items():
+                        if info['photo_type'] != 0:
+                            continue
                         self.mImgList.append(name)
                         self.suggest_corners.append([
                                 info['rotation'], tuple(info["aligned"][0]), tuple(info["aligned"][1]),
@@ -1569,17 +1583,17 @@ class MainWindow(QMainWindow, WindowMixin):
                 if self.start_idx != -1 and self.end_idx != -1:
                     self.mImgList = self.mImgList[self.start_idx:self.end_idx]
                     self.suggest_corners = self.suggest_corners[self.start_idx:self.end_idx]
-                elif self.phase == 0:
-                    try:
-                        annotated_files = list(self.label_info.keys())
-                        annotated_ids = [self.mImgList.index(f) for f in annotated_files]
-                        unannotated_ids = list(set(range(len(self.mImgList))) - set(annotated_ids))
-                        ids = annotated_ids + unannotated_ids
-                        self.mImgList = list(np.array(self.mImgList)[ids])
-                        self.suggest_corners = list(np.array(self.suggest_corners)[ids])
-                        self.settings['curr_index'] = len(annotated_ids)
-                    except Exception as error:
-                        print(error)
+                # elif self.phase == 0:
+                #     try:
+                #         annotated_files = list(self.label_info.keys())
+                #         annotated_ids = [self.mImgList.index(f) for f in annotated_files]
+                #         unannotated_ids = list(set(range(len(self.mImgList))) - set(annotated_ids))
+                #         ids = annotated_ids + unannotated_ids
+                #         self.mImgList = list(np.array(self.mImgList)[ids])
+                #         self.suggest_corners = list(np.array(self.suggest_corners)[ids])
+                #         self.settings['curr_index'] = len(annotated_ids)
+                #     except Exception as error:
+                #         print(error)
                 print(self.suggest_corners[:5])
                 print(self.mImgList[:5])
         else:
