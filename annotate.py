@@ -89,17 +89,17 @@ def four_point_transform(image, pts):
 
     # compute the width of the new image, which will be the
     # maximum distance between bottom-right and bottom-left
-    # x-coordiates or the top-right and top-left x-coordinates
-    widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
-    widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
-    maxWidth = max(int(widthA), int(widthB))
+    # x-coordinates or the top-right and top-left x-coordinates
+    width_a = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
+    width_b = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
+    max_width = max(int(width_a), int(width_b))
 
     # compute the height of the new image, which will be the
     # maximum distance between the top-right and bottom-right
     # y-coordinates or the top-left and bottom-left y-coordinates
-    heightA = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
-    heightB = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
-    maxHeight = max(int(heightA), int(heightB))
+    height_a = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
+    height_b = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
+    max_height = max(int(height_a), int(height_b))
 
     # now that we have the dimensions of the new image, construct
     # the set of destination points to obtain a "birds eye view",
@@ -108,13 +108,13 @@ def four_point_transform(image, pts):
     # order
     dst = np.array([
         [0, 0],
-        [maxWidth - 1, 0],
-        [maxWidth - 1, maxHeight - 1],
-        [0, maxHeight - 1]], dtype="float32")
+        [max_width - 1, 0],
+        [max_width - 1, max_height - 1],
+        [0, max_height - 1]], dtype="float32")
 
     # compute the perspective transform matrix and then apply it
     M = cv2.getPerspectiveTransform(rect, dst)
-    warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
+    warped = cv2.warpPerspective(image, M, (max_width, max_height))
 
     # return the warped image
     return warped
@@ -197,7 +197,7 @@ class OpenLabelDialog(QDialog):
 class MainWindow(QMainWindow, WindowMixin):
     FIT_WINDOW, FIT_WIDTH, MANUAL_ZOOM = list(range(3))
 
-    def __init__(self, defaultFilename=None, defaultPrefdefClassFile=None, defaultSaveDir=None, start_idx=-1, end_idx=-1):
+    def __init__(self, default_filename=None, default_prefdef_classfile=None, default_save_dir=None, start_idx=-1, end_idx=-1):
         super(MainWindow, self).__init__()
         self.setWindowTitle(__appname__)
         self.start_idx = start_idx
@@ -213,7 +213,7 @@ class MainWindow(QMainWindow, WindowMixin):
         getStr = lambda strId: self.stringBundle.getString(strId)
 
         # Save as Pascal voc xml
-        self.defaultSaveDir = defaultSaveDir
+        self.defaultSaveDir = default_save_dir
         self.usingPascalVocFormat = True
         self.usingYoloFormat = False
 
@@ -239,7 +239,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.screencast = "https://youtu.be/p0nR2YsCY_U"
 
         # Load predefined classes to the list
-        self.loadPredefinedClasses(defaultPrefdefClassFile)
+        self.loadPredefinedClasses(default_prefdef_classfile)
 
         # Main widgets and related state.
         self.labelDialog = LabelDialog(parent=self, listItem=self.labelHist)
@@ -248,56 +248,56 @@ class MainWindow(QMainWindow, WindowMixin):
         self.shapesToItems = {}
         self.prevLabelText = ''
 
-        listLayout = QVBoxLayout()
-        listLayout.setContentsMargins(0, 0, 0, 0)
+        list_layout = QVBoxLayout()
+        list_layout.setContentsMargins(0, 0, 0, 0)
 
         # Create a widget for using default label
         self.useDefaultLabelCheckbox = QCheckBox(getStr('useDefaultLabel'))
         self.useDefaultLabelCheckbox.setChecked(False)
         self.defaultLabelTextLine = QLineEdit()
-        useDefaultLabelQHBoxLayout = QHBoxLayout()
-        useDefaultLabelQHBoxLayout.addWidget(self.useDefaultLabelCheckbox)
-        useDefaultLabelQHBoxLayout.addWidget(self.defaultLabelTextLine)
-        useDefaultLabelContainer = QWidget()
-        useDefaultLabelContainer.setLayout(useDefaultLabelQHBoxLayout)
+        use_default_label_qh_box_layout = QHBoxLayout()
+        use_default_label_qh_box_layout.addWidget(self.useDefaultLabelCheckbox)
+        use_default_label_qh_box_layout.addWidget(self.defaultLabelTextLine)
+        use_default_label_container = QWidget()
+        use_default_label_container.setLayout(use_default_label_qh_box_layout)
 
-        # Create a widget for edit and diffc button
+        # Create a widget for edit and difficult button
         self.diffcButton = QCheckBox(getStr('useDifficult'))
         self.diffcButton.setChecked(False)
         self.diffcButton.stateChanged.connect(self.btnstate)
         self.editButton = QToolButton()
         self.editButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 
-        # Add some of widgets to listLayout
-        listLayout.addWidget(self.editButton)
-        listLayout.addWidget(self.diffcButton)
-        listLayout.addWidget(useDefaultLabelContainer)
+        # Add some of widgets to list_layout
+        list_layout.addWidget(self.editButton)
+        list_layout.addWidget(self.diffcButton)
+        list_layout.addWidget(use_default_label_container)
 
         # Create and add a widget for showing current label items
         self.labelList = QListWidget()
-        labelListContainer = QWidget()
-        labelListContainer.setLayout(listLayout)
+        label_list_container = QWidget()
+        label_list_container.setLayout(list_layout)
         self.labelList.itemActivated.connect(self.labelSelectionChanged)
         self.labelList.itemSelectionChanged.connect(self.labelSelectionChanged)
         self.labelList.itemDoubleClicked.connect(self.editLabel)
         # Connect to itemChanged to detect checkbox changes.
         self.labelList.itemChanged.connect(self.labelItemChanged)
-        listLayout.addWidget(self.labelList)
+        list_layout.addWidget(self.labelList)
 
         self.dock = QDockWidget(getStr('boxLabelText'), self)
         self.dock.setObjectName(getStr('labels'))
-        self.dock.setWidget(labelListContainer)
+        self.dock.setWidget(label_list_container)
 
         self.fileListWidget = QListWidget()
         self.fileListWidget.itemDoubleClicked.connect(self.fileitemDoubleClicked)
-        filelistLayout = QVBoxLayout()
-        filelistLayout.setContentsMargins(0, 0, 0, 0)
-        filelistLayout.addWidget(self.fileListWidget)
-        fileListContainer = QWidget()
-        fileListContainer.setLayout(filelistLayout)
+        filelist_layout = QVBoxLayout()
+        filelist_layout.setContentsMargins(0, 0, 0, 0)
+        filelist_layout.addWidget(self.fileListWidget)
+        file_list_container = QWidget()
+        file_list_container.setLayout(filelist_layout)
         self.filedock = QDockWidget(getStr('fileList'), self)
         self.filedock.setObjectName(getStr('files'))
-        self.filedock.setWidget(fileListContainer)
+        self.filedock.setWidget(file_list_container)
 
         self.zoomWidget = ZoomWidget()
         self.colorDialog = ColorDialog(parent=self)
@@ -363,19 +363,19 @@ class MainWindow(QMainWindow, WindowMixin):
         save_format = action('&PascalVOC', self.change_format,
                       'Ctrl+', 'format_voc', getStr('changeSaveFormat'), enabled=False)
 
-        saveAs = action(getStr('saveAs'), self.saveFileAs,
+        save_as = action(getStr('save_as'), self.saveFileAs,
                         'Ctrl+Shift+S', 'save-as', getStr('saveAsDetail'), enabled=False)
 
         close = action(getStr('closeCur'), self.closeFile, 'Ctrl+W', 'close', getStr('closeCurDetail'))
 
-        resetAll = action(getStr('resetAll'), self.resetAll, None, 'resetall', getStr('resetAllDetail'))
+        reset_all = action(getStr('reset_all'), self.resetAll, None, 'resetall', getStr('resetAllDetail'))
 
         color1 = action(getStr('boxLineColor'), self.chooseColor1,
                         'Ctrl+L', 'color_line', getStr('boxLineColorDetail'))
 
-        createMode = action(getStr('crtBox'), self.setCreateMode,
+        create_mode = action(getStr('crtBox'), self.setCreateMode,
                             'w', 'new', getStr('crtBoxDetail'), enabled=False)
-        editMode = action('&Edit\nRectBox', self.setEditMode,
+        edit_mode = action('&Edit\nRectBox', self.setEditMode,
                           'Ctrl+J', 'edit', u'Move and edit Boxs', enabled=False)
 
         create = action(getStr('crtBox'), self.createShape,
@@ -386,14 +386,14 @@ class MainWindow(QMainWindow, WindowMixin):
                       'Ctrl+D', 'copy', getStr('dupBoxDetail'),
                       enabled=False)
 
-        advancedMode = action(getStr('advancedMode'), self.toggleAdvancedMode,
+        advanced_mode = action(getStr('advanced_mode'), self.toggleAdvancedMode,
                               'Ctrl+Shift+A', 'expert', getStr('advancedModeDetail'),
                               checkable=True)
 
-        hideAll = action('&Hide\nRectBox', partial(self.togglePolygons, False),
+        hide_all = action('&Hide\nRectBox', partial(self.togglePolygons, False),
                          'Ctrl+H', 'hide', getStr('hideAllBoxDetail'),
                          enabled=False)
-        showAll = action('&Show\nRectBox', partial(self.togglePolygons, True),
+        show_all = action('&Show\nRectBox', partial(self.togglePolygons, True),
                          'Ctrl+A', 'hide', getStr('showAllBoxDetail'),
                          enabled=False)
 
@@ -401,16 +401,16 @@ class MainWindow(QMainWindow, WindowMixin):
                             'Ctrl+Shift+A', 'hide', getStr('showAllBoxDetail'),
                             enabled=False)
 
-        rotateLeft = action('&Rotate -90', partial(self.rotate, -90),
+        rotate_left = action('&Rotate -90', partial(self.rotate, -90),
                          'Ctrl+r', 'hide', getStr('showAllBoxDetail'),
                          enabled=True)
 
-        rotateRight = action('&Rotate +90', partial(self.rotate, 90),
+        rotate_right = action('&Rotate +90', partial(self.rotate, 90),
                             'Ctrl+t', 'hide', getStr('showAllBoxDetail'),
                             enabled=True)
 
         help = action(getStr('tutorial'), self.showTutorialDialog, None, 'help', getStr('tutorialDetail'))
-        showInfo = action(getStr('info'), self.showInfoDialog, None, 'help', getStr('info'))
+        show_info = action(getStr('info'), self.showInfoDialog, None, 'help', getStr('info'))
 
         zoom = QWidgetAction(self)
         zoom.setDefaultWidget(self.zoomWidget)
@@ -420,21 +420,21 @@ class MainWindow(QMainWindow, WindowMixin):
                                              fmtShortcut("Ctrl+Wheel")))
         self.zoomWidget.setEnabled(False)
 
-        zoomIn = action(getStr('zoomin'), partial(self.addZoom, 10),
+        zoom_in = action(getStr('zoomin'), partial(self.addZoom, 10),
                         'Ctrl++', 'zoom-in', getStr('zoominDetail'), enabled=False)
-        zoomOut = action(getStr('zoomout'), partial(self.addZoom, -10),
+        zoom_out = action(getStr('zoomout'), partial(self.addZoom, -10),
                          'Ctrl+-', 'zoom-out', getStr('zoomoutDetail'), enabled=False)
-        zoomOrg = action(getStr('originalsize'), partial(self.setZoom, 100),
+        zoom_org = action(getStr('originalsize'), partial(self.setZoom, 100),
                          'Ctrl+=', 'zoom', getStr('originalsizeDetail'), enabled=False)
-        fitWindow = action(getStr('fitWin'), self.setFitWindow,
+        fit_window = action(getStr('fitWin'), self.setFitWindow,
                            'Ctrl+F', 'fit-window', getStr('fitWinDetail'),
                            checkable=True, enabled=False)
-        fitWidth = action(getStr('fitWidth'), self.setFitWidth,
+        fit_width = action(getStr('fit_width'), self.setFitWidth,
                           'Ctrl+Shift+F', 'fit-width', getStr('fitWidthDetail'),
                           checkable=True, enabled=False)
         # Group zoom controls into a list for easier toggling.
-        zoomActions = (self.zoomWidget, zoomIn, zoomOut,
-                       zoomOrg, fitWindow, fitWidth)
+        zoom_actions = (self.zoomWidget, zoom_in, zoom_out,
+                       zoom_org, fit_window, fit_width)
         self.zoomMode = self.FIT_WINDOW
         self.scalers = {
             self.FIT_WINDOW: self.scaleFitWindow,
@@ -448,10 +448,10 @@ class MainWindow(QMainWindow, WindowMixin):
                       enabled=False)
         self.editButton.setDefaultAction(edit)
 
-        shapeLineColor = action(getStr('shapeLineColor'), self.chshapeLineColor,
+        shape_line_color = action(getStr('shape_line_color'), self.chshapeLineColor,
                                 icon='color_line', tip=getStr('shapeLineColorDetail'),
                                 enabled=False)
-        shapeFillColor = action(getStr('shapeFillColor'), self.chshapeFillColor,
+        shape_fill_color = action(getStr('shape_fill_color'), self.chshapeFillColor,
                                 icon='color', tip=getStr('shapeFillColorDetail'),
                                 enabled=False)
 
@@ -459,9 +459,9 @@ class MainWindow(QMainWindow, WindowMixin):
         labels.setText(getStr('showHide'))
         labels.setShortcut('Ctrl+Shift+L')
 
-        # Lavel list context menu.
-        labelMenu = QMenu()
-        addActions(labelMenu, (edit, delete))
+        # Label list context menu.
+        label_menu = QMenu()
+        addActions(label_menu, (edit, delete))
         self.labelList.setContextMenuPolicy(Qt.CustomContextMenu)
         self.labelList.customContextMenuRequested.connect(
             self.popLabelListMenu)
@@ -474,24 +474,24 @@ class MainWindow(QMainWindow, WindowMixin):
         self.drawSquaresOption.triggered.connect(self.toogleDrawSquare)
 
         # Store actions for further handling.
-        self.actions = struct(save=save, save_format=save_format, saveAs=saveAs, open=open, close=close, resetAll = resetAll,
+        self.actions = struct(save=save, save_format=save_format, saveAs=save_as, open=open, close=close, resetAll = reset_all,
                               lineColor=color1, create=create, delete=delete, edit=edit, copy=copy,
-                              createMode=createMode, editMode=editMode, advancedMode=advancedMode,
-                              shapeLineColor=shapeLineColor, shapeFillColor=shapeFillColor,
-                              zoom=zoom, zoomIn=zoomIn, zoomOut=zoomOut, zoomOrg=zoomOrg,
-                              fitWindow=fitWindow, fitWidth=fitWidth,
-                              zoomActions=zoomActions,
+                              createMode=create_mode, editMode=edit_mode, advancedMode=advanced_mode,
+                              shapeLineColor=shape_line_color, shapeFillColor=shape_fill_color,
+                              zoom=zoom, zoomIn=zoom_in, zoomOut=zoom_out, zoomOrg=zoom_org,
+                              fitWindow=fit_window, fitWidth=fit_width,
+                              zoomActions=zoom_actions,
                               fileMenuActions=(
-                                  open, opendir, save, saveAs, close, resetAll, quit),
+                                  open, opendir, save, save_as, close, reset_all, quit),
                               beginner=(), advanced=(),
                               editMenu=(edit, copy, delete,
                                         None, color1, self.drawSquaresOption),
                               beginnerContext=(create, edit, copy, delete),
-                              advancedContext=(createMode, editMode, edit, copy,
-                                               delete, shapeLineColor, shapeFillColor),
+                              advancedContext=(create_mode, edit_mode, edit, copy,
+                                               delete, shape_line_color, shape_fill_color),
                               onLoadActive=(
-                                  close, create, createMode, editMode),
-                              onShapesPresent=(saveAs, hideAll, showAll))
+                                  close, create, create_mode, edit_mode),
+                              onShapesPresent=(save_as, hide_all, show_all))
 
         self.menus = struct(
             file=self.menu('&File'),
@@ -499,7 +499,7 @@ class MainWindow(QMainWindow, WindowMixin):
             view=self.menu('&View'),
             help=self.menu('&Help'),
             recentFiles=QMenu('Open &Recent'),
-            labelList=labelMenu)
+            labelList=label_menu)
 
         # Auto saving : Enable auto saving if pressing next
         self.autoSaving = QAction(getStr('autoSaveMode'), self)
@@ -519,16 +519,16 @@ class MainWindow(QMainWindow, WindowMixin):
         self.displayLabelOption.triggered.connect(self.togglePaintLabelsOption)
 
         addActions(self.menus.file,
-                   (open, opendir, changeSavedir, openAnnotation, self.menus.recentFiles, save, save_format, saveAs, close, resetAll, quit))
-        addActions(self.menus.help, (help, showInfo))
+                   (open, opendir, changeSavedir, openAnnotation, self.menus.recentFiles, save, save_format, save_as, close, reset_all, quit))
+        addActions(self.menus.help, (help, show_info))
         addActions(self.menus.view, (
             self.autoSaving,
             self.singleClassMode,
             self.displayLabelOption,
-            labels, advancedMode, None,
-            hideAll, showAll, None,
-            zoomIn, zoomOut, zoomOrg, None,
-            fitWindow, fitWidth))
+            labels, advanced_mode, None,
+            hide_all, show_all, None,
+            zoom_in, zoom_out, zoom_org, None,
+            fit_window, fit_width))
 
         self.menus.file.aboutToShow.connect(self.updateFileMenu)
 
@@ -542,19 +542,19 @@ class MainWindow(QMainWindow, WindowMixin):
         self.actions.beginner = (
             # open, opendir, changeSavedir, openNextImg, openPrevImg, verify, save, save_format, None, create, copy, delete, None,
             opendir, changeSavedir, openNextImg, openPrevImg, None, create, copy, delete, None,
-            zoomIn, zoom, zoomOut, fitWindow, fitWidth, None, align_crop, None, rotateRight, rotateLeft)
+            zoom_in, zoom, zoom_out, fit_window, fit_width, None, align_crop, None, rotate_right, rotate_left)
 
         self.actions.advanced = (
             open, opendir, changeSavedir, openNextImg, openPrevImg, save, save_format, None,
-            createMode, editMode, None,
-            hideAll, showAll)
+            create_mode, edit_mode, None,
+            hide_all, show_all)
 
         self.statusBar().showMessage('%s started.' % __appname__)
         self.statusBar().show()
 
         # Application state.
         self.image = QImage()
-        self.filepath = ustr(defaultFilename)
+        self.filepath = ustr(default_filename)
         self.recentFiles = []
         self.maxRecent = 7
         self.lineColor = None
@@ -564,13 +564,13 @@ class MainWindow(QMainWindow, WindowMixin):
         # Add Chris
         self.difficult = False
 
-        ## Fix the compatible issue for qt4 and qt5. Convert the QStringList to python list
+        # Fix the compatible issue for qt4 and qt5. Convert the QStringList to python list
         if settings.get(SETTING_RECENT_FILES):
             if have_qstring():
-                recentFileQStringList = settings.get(SETTING_RECENT_FILES)
-                self.recentFiles = [ustr(i) for i in recentFileQStringList]
+                recent_file_q_string_list = settings.get(SETTING_RECENT_FILES)
+                self.recentFiles = [ustr(i) for i in recent_file_q_string_list]
             else:
-                self.recentFiles = recentFileQStringList = settings.get(SETTING_RECENT_FILES)
+                self.recentFiles = recent_file_q_string_list = settings.get(SETTING_RECENT_FILES)
 
         size = settings.get(SETTING_WIN_SIZE, QSize(600, 500))
         position = QPoint(0, 0)
@@ -582,10 +582,10 @@ class MainWindow(QMainWindow, WindowMixin):
                 break
         self.resize(size)
         self.move(position)
-        saveDir = ustr(settings.get(SETTING_SAVE_DIR, None))
+        save_dir = ustr(settings.get(SETTING_SAVE_DIR, None))
         self.lastOpenDir = ustr(settings.get(SETTING_LAST_OPEN_DIR, None))
-        if self.defaultSaveDir is None and saveDir is not None and os.path.exists(saveDir):
-            self.defaultSaveDir = saveDir
+        if self.defaultSaveDir is None and save_dir is not None and os.path.exists(save_dir):
+            self.defaultSaveDir = save_dir
             self.statusBar().showMessage('%s started. Annotation will be saved to %s' %
                                          (__appname__, self.defaultSaveDir))
             self.statusBar().show()
@@ -624,7 +624,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.labelCoordinates = QLabel('')
         self.statusBar().addPermanentWidget(self.labelCoordinates)
 
-        # Open Dir if deafult file
+        # Open Dir if default file
         if self.filepath and os.path.isdir(self.filepath):
             self.open_dir_dialog(dirpath=self.filepath)
 
@@ -661,7 +661,7 @@ class MainWindow(QMainWindow, WindowMixin):
             # Draw rectangle if Ctrl is pressed
             self.canvas.setDrawingShapeToSquare(True)
 
-    ## Support Functions ##
+    # Support Functions ##
     def set_format(self, save_format):
         if save_format == FORMAT_PASCALVOC:
             self.actions.save_format.setText(FORMAT_PASCALVOC)
@@ -681,7 +681,7 @@ class MainWindow(QMainWindow, WindowMixin):
         if self.usingPascalVocFormat: self.set_format(FORMAT_YOLO)
         elif self.usingYoloFormat: self.set_format(FORMAT_PASCALVOC)
 
-    def noShapes(self):
+    def no_shapes(self):
         return not self.itemsToShapes
 
     def align_crop(self, value):
@@ -821,13 +821,13 @@ class MainWindow(QMainWindow, WindowMixin):
         return not self.beginner()
 
     def getAvailableScreencastViewer(self):
-        osName = platform.system()
+        os_name = platform.system()
 
-        if osName == 'Windows':
+        if os_name == 'Windows':
             return ['C:\\Program Files\\Internet Explorer\\iexplore.exe']
-        elif osName == 'Linux':
+        elif os_name == 'Linux':
             return ['xdg-open']
-        elif osName == 'Darwin':
+        elif os_name == 'Darwin':
             return ['open', '-a', 'Safari']
 
     ## Callbacks ##
@@ -1754,7 +1754,7 @@ class MainWindow(QMainWindow, WindowMixin):
     def deleteSelectedShape(self):
         self.remLabel(self.canvas.deleteSelected())
         self.setDirty()
-        if self.noShapes():
+        if self.no_shapes():
             for action in self.actions.onShapesPresent:
                 action.setEnabled(False)
 
@@ -1847,14 +1847,14 @@ def get_main_app(argv=[]):
     app.setApplicationName(__appname__)
     app.setWindowIcon(newIcon("app"))
     # Tzutalin 201705+: Accept extra agruments to change predefined class file
-    # Usage : labelImg.py image predefClassFile saveDir
+    # Usage : annotate.py image predefClassFile saveDir
     # win = MainWindow(argv[1] if len(argv) >= 2 else None,
     #                  argv[2] if len(argv) >= 3 else os.path.join(
     #                      os.path.dirname(sys.argv[0]),
     #                      'data', 'predefined_classes.txt'),
     #                  argv[3] if len(argv) >= 4 else None)
     win = MainWindow(
-        defaultPrefdefClassFile=os.path.join(os.path.dirname(sys.argv[0]), 'data', 'predefined_classes.txt'),
+        default_prefdef_classfile=os.path.join(os.path.dirname(sys.argv[0]), 'data', 'predefined_classes.txt'),
         start_idx=int(argv[1]) if len(argv) >= 2 else -1,
         end_idx=int(argv[2]) if len(argv) >= 3 else -1
     )
