@@ -329,7 +329,7 @@ class MainWindow(QMainWindow, WindowMixin):
         self.dockFeatures = QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetFloatable
         self.dock.setFeatures(self.dock.features() ^ self.dockFeatures)
         self.dock.close()
-        self.phase = 0
+        self.phase = 1
 
         # Actions
         action = partial(newAction, self)
@@ -363,12 +363,12 @@ class MainWindow(QMainWindow, WindowMixin):
         save_format = action('&PascalVOC', self.change_format,
                       'Ctrl+', 'format_voc', getStr('changeSaveFormat'), enabled=False)
 
-        save_as = action(getStr('save_as'), self.saveFileAs,
+        save_as = action(getStr('saveAs'), self.saveFileAs,
                         'Ctrl+Shift+S', 'save-as', getStr('saveAsDetail'), enabled=False)
 
         close = action(getStr('closeCur'), self.closeFile, 'Ctrl+W', 'close', getStr('closeCurDetail'))
 
-        reset_all = action(getStr('reset_all'), self.resetAll, None, 'resetall', getStr('resetAllDetail'))
+        reset_all = action(getStr('resetAll'), self.resetAll, None, 'resetall', getStr('resetAllDetail'))
 
         color1 = action(getStr('boxLineColor'), self.chooseColor1,
                         'Ctrl+L', 'color_line', getStr('boxLineColorDetail'))
@@ -386,7 +386,7 @@ class MainWindow(QMainWindow, WindowMixin):
                       'Ctrl+D', 'copy', getStr('dupBoxDetail'),
                       enabled=False)
 
-        advanced_mode = action(getStr('advanced_mode'), self.toggleAdvancedMode,
+        advanced_mode = action(getStr('advancedMode'), self.toggleAdvancedMode,
                               'Ctrl+Shift+A', 'expert', getStr('advancedModeDetail'),
                               checkable=True)
 
@@ -429,7 +429,7 @@ class MainWindow(QMainWindow, WindowMixin):
         fit_window = action(getStr('fitWin'), self.setFitWindow,
                            'Ctrl+F', 'fit-window', getStr('fitWinDetail'),
                            checkable=True, enabled=False)
-        fit_width = action(getStr('fit_width'), self.setFitWidth,
+        fit_width = action(getStr('fitWidth'), self.setFitWidth,
                           'Ctrl+Shift+F', 'fit-width', getStr('fitWidthDetail'),
                           checkable=True, enabled=False)
         # Group zoom controls into a list for easier toggling.
@@ -448,10 +448,10 @@ class MainWindow(QMainWindow, WindowMixin):
                       enabled=False)
         self.editButton.setDefaultAction(edit)
 
-        shape_line_color = action(getStr('shape_line_color'), self.chshapeLineColor,
+        shape_line_color = action(getStr('shapeLineColor'), self.chshapeLineColor,
                                 icon='color_line', tip=getStr('shapeLineColorDetail'),
                                 enabled=False)
-        shape_fill_color = action(getStr('shape_fill_color'), self.chshapeFillColor,
+        shape_fill_color = action(getStr('shapeFillColor'), self.chshapeFillColor,
                                 icon='color', tip=getStr('shapeFillColorDetail'),
                                 enabled=False)
 
@@ -1042,7 +1042,7 @@ class MainWindow(QMainWindow, WindowMixin):
             self.labelFile.verified = self.canvas.verified
 
         shapes = [self.format_shape(shape) for shape in self.canvas.shapes]
-        # Can add differrent annotation formats here
+        # Can add different annotation formats here
         try:
             if self.usingPascalVocFormat is True:
                 if annotationFilePath[-4:].lower() != ".xml":
@@ -1482,7 +1482,8 @@ class MainWindow(QMainWindow, WindowMixin):
         continue_condition = True
         while continue_condition:
             images_dir = self.settings.get('images_dir', default= "https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data01/images/")
-            bbox_filename = self.settings.get('bbox_filename', default="https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners_splited_csv/xxx.csv")
+            # bbox_filename = self.settings.get('bbox_filename', default="https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners_splited_csv/xxx.csv")
+            bbox_filename = self.settings.get('bbox_filename', default="https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorner_labels/Khanh.json")
             images_dir, bbox_filename, username, password, label_filename, ok = \
                 OpenLabelDialog.get_result(images_dir, bbox_filename)
             self.settings['images_dir'] = images_dir
@@ -1536,18 +1537,39 @@ class MainWindow(QMainWindow, WindowMixin):
                     msg.setStandardButtons(QMessageBox.Ok)
                     retval = msg.exec_()
                     return False
-                df = pd.read_csv(io.StringIO(r.text), low_memory=False)
-                self.mImgList = [st for st in df['file_path'].values]
-                self.suggest_corners = [
-                    [(x[0], x[1]), (x[2], x[3]), (x[4], x[5]), (x[6], x[7])]
-                    for x in df[
-                        ['top-left-y', 'top-left-x', 'top-right-y', 'top-right-x',
-                         'bottom-right-y', 'bottom-right-x', 'bottom-left-y', 'bottom-left-x']].values
-                ]
+                if bbox_filename[-3:] == 'csv':
+                    df = pd.read_csv(io.StringIO(r.text), low_memory=False)
+                    self.mImgList = [st for st in df['file_path'].values]
+                    self.suggest_corners = [
+                        [0, (x[0], x[1]), (x[2], x[3]), (x[4], x[5]), (x[6], x[7])]
+                        for x in df[
+                            ['top-left-y', 'top-left-x', 'top-right-y', 'top-right-x',
+                             'bottom-right-y', 'bottom-right-x', 'bottom-left-y', 'bottom-left-x']].values
+                    ]
+                elif bbox_filename[-4:] == 'json':
+                    self.label_info = json.loads(r.text)
+                    self.mImgList = []
+                    self.suggest_corners = []
+                    for name, info in self.label_info.items():
+                        self.mImgList.append(name)
+                        self.suggest_corners.append([
+                                info['rotation'], tuple(info["aligned"][0]), tuple(info["aligned"][1]),
+                                tuple(info["aligned"][2]), tuple(info["aligned"][3])
+                        ])
+                else:
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Information)
+
+                    msg.setText("Only support .csv or .json files")
+                    msg.setWindowTitle("Get bounding box file error")
+                    msg.setDetailedText(r.text)
+                    msg.setStandardButtons(QMessageBox.Ok)
+                    retval = msg.exec_()
+                    return False
                 if self.start_idx != -1 and self.end_idx != -1:
                     self.mImgList = self.mImgList[self.start_idx:self.end_idx]
                     self.suggest_corners = self.suggest_corners[self.start_idx:self.end_idx]
-                else:
+                elif self.phase == 0:
                     try:
                         annotated_files = list(self.label_info.keys())
                         annotated_ids = [self.mImgList.index(f) for f in annotated_files]
@@ -1863,9 +1885,13 @@ def get_main_app(argv=[]):
 
 
 def main():
-    '''construct main app and run it'''
+    """
+    construct main app and run it
+    :return:
+    """
     app, _win = get_main_app(sys.argv)
     return app.exec_()
+
 
 if __name__ == '__main__':
     sys.exit(main())

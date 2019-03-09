@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/annotate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/annotate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labelImg.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_qt.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_qt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/annotate.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotate.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/annotate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1220">
-              <caret line="823" column="15" selection-start-line="823" selection-start-column="15" selection-end-line="823" selection-end-column="15" />
+            <state relative-caret-position="497">
+              <caret line="1667" column="60" selection-start-line="1667" selection-start-column="35" selection-end-line="1667" selection-end-column="61" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
@@ -33,19 +29,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/settings.py">
+        <entry file="file:///media/data/code/annotate/libs/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="783">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/labelDialog.py">
+        <entry file="file://$PROJECT_DIR$/libs/stringBundle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2117">
-              <caret line="73" column="102" selection-start-line="73" selection-start-column="102" selection-end-line="73" selection-end-column="102" />
+            <state relative-caret-position="605">
+              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/strings/strings.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///media/data/code/annotate/libs/stringBundle.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="655">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
@@ -90,19 +113,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>FRONT</find>
-      <find>setting</find>
-      <find>settings</find>
-      <find>openNext</find>
-      <find>self.settings.</find>
-      <find>self.setting</find>
-      <find>close</find>
-      <find>self.settings[</find>
-      <find>selected</find>
-      <find>load_file</find>
-      <find>self.settings</find>
-      <find>def open</find>
-      <find>def open_nex</find>
       <find>def open_d</find>
       <find>labellist</find>
       <find>listLayout</find>
@@ -120,6 +130,19 @@
       <find>ctrl+r</find>
       <find>Qt.Key_Control</find>
       <find>Yes</find>
+      <find>save</find>
+      <find>self.label</find>
+      <find>self.label_info</find>
+      <find>.csv</find>
+      <find>.json</find>
+      <find>self.setting</find>
+      <find>self.mImgList</find>
+      <find>self.current</find>
+      <find>self.curr</find>
+      <find>self.curren</find>
+      <find>self.cur</find>
+      <find>self.curr_index</find>
+      <find>self.settings['c</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -136,6 +159,7 @@
         <option value="$PROJECT_DIR$/libs/labelDialog.py" />
         <option value="$PROJECT_DIR$/libs/canvas.py" />
         <option value="$PROJECT_DIR$/labelImg.py" />
+        <option value="$PROJECT_DIR$/resources/strings/strings.properties" />
         <option value="$PROJECT_DIR$/annotate.py" />
       </list>
     </option>
@@ -154,7 +178,31 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="annotate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="annotate" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="annotate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="annotate" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="annotate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="annotate" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="strings" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -276,7 +324,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="labelImg" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="annotate" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="annotate" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -347,7 +395,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.labelImg" />
+        <item itemvalue="Python.annotate" />
       </list>
     </recent_temporary>
   </component>
@@ -366,22 +414,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="3840" height="2110" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.26586103" />
-      <window_info id="Structure" order="1" visible="true" weight="0.20875067" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26568267" />
+      <window_info id="Structure" order="1" weight="0.20875067" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3288337" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978678" weight="0.31101513" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49280384" weight="0.3351135" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49261993" visible="true" weight="0.3347732" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4989339" weight="0.32990807" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5071962" side_tool="true" weight="0.26392645" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49973643" weight="0.32991362" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4989339" weight="0.32937366" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5002636" side_tool="true" weight="0.32991362" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -400,8 +447,37 @@
           <line>1226</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/libs/stringBundle.py</url>
+          <line>62</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/annotate.py</url>
+          <line>1549</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/annotate.py</url>
+          <line>1637</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/libs/settings.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>self.settings['curr_index']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://C:/Anaconda3/Lib/urllib/request.py" />
@@ -413,23 +489,6 @@
     <entry file="file://C:/Anaconda3/Lib/genericpath.py" />
     <entry file="file://C:/Anaconda3/Lib/codecs.py" />
     <entry file="file://C:/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi" />
-    <entry file="file://$PROJECT_DIR$/annotate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1220">
-          <caret line="823" column="15" selection-start-line="823" selection-start-column="15" selection-end-line="823" selection-end-column="15" />
-          <folding>
-            <element signature="e#46#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libs/labelDialog.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2117">
@@ -462,6 +521,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3915">
           <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/strings/strings.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/stringBundle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="605">
+          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/data/code/annotate/libs/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/data/code/annotate/libs/stringBundle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="1667" column="60" selection-start-line="1667" selection-start-column="35" selection-end-line="1667" selection-end-column="61" />
+          <folding>
+            <element signature="e#46#65#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
