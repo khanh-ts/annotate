@@ -156,7 +156,7 @@ class OpenLabelDialog(QDialog):
         self.password = QLineEdit("")
         self.password.setEchoMode(QLineEdit.Password)
         self.label_filename_lbl = QLabel("Label filename:")
-        self.label_filename = QLineEdit(os.path.join(os.path.expanduser('~'), 'VNIDCard.json'))
+        self.label_filename = QLineEdit(os.path.join(os.path.expanduser('~'), '$user_results.json'))
         self.setFixedSize(600, 700)
 
         layout.addWidget(self.images_dir_lbl)
@@ -188,9 +188,11 @@ class OpenLabelDialog(QDialog):
         bbox_filename = dialog.bbox_filename.text()
         username = dialog.username.text()
         password = dialog.password.text()
-        images_dir = images_dir.replace('$user', username)
-        bbox_filename = bbox_filename.replace('$user', username)
         label_filename = dialog.label_filename.text()
+        if username.strip() != '':
+            images_dir = images_dir.replace('$user', username)
+            bbox_filename = bbox_filename.replace('$user', username)
+            label_filename = label_filename.replace('$user', username)
         return images_dir, bbox_filename, username, password, label_filename, result == QDialog.Accepted
 
 
@@ -271,9 +273,9 @@ class MainWindow(QMainWindow, WindowMixin):
         self.editButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 
         # Add some of widgets to list_layout
-        list_layout.addWidget(self.editButton)
-        list_layout.addWidget(self.diffcButton)
-        list_layout.addWidget(use_default_label_container)
+        # list_layout.addWidget(self.editButton)
+        # list_layout.addWidget(self.diffcButton)
+        # list_layout.addWidget(use_default_label_container)
 
         # Create and add a widget for showing current label items
         self.labelList = QListWidget()
@@ -330,7 +332,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
         self.dockFeatures = QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetFloatable
         self.dock.setFeatures(self.dock.features() ^ self.dockFeatures)
-        self.dock.close()
+        # self.dock.close()
         self.phase = 1
 
         # Actions
@@ -460,6 +462,8 @@ class MainWindow(QMainWindow, WindowMixin):
         labels = self.dock.toggleViewAction()
         labels.setText(getStr('showHide'))
         labels.setShortcut('Ctrl+Shift+L')
+        if self.phase == 0:
+            self.dock.close()
 
         # Label list context menu.
         label_menu = QMenu()
@@ -631,6 +635,9 @@ class MainWindow(QMainWindow, WindowMixin):
             self.open_dir_dialog(dirpath=self.filepath)
 
         self.setFocusPolicy(Qt.ClickFocus)
+
+        self.aligned_points = None
+        self.curr_index = -1
 
     @property
     def phase(self):
@@ -924,7 +931,6 @@ class MainWindow(QMainWindow, WindowMixin):
         if self.curr_index < len(self.mImgList):
             filename = self.mImgList[self.curr_index]
             if filename:
-                # filename = os.path.relpath(filepath, self.dirname)
                 if filename in self.label_info:
                     self.aligned_points = np.array(self.label_info[filename]['aligned'])
                     rotation = self.label_info[filename]['rotation']
@@ -940,7 +946,7 @@ class MainWindow(QMainWindow, WindowMixin):
             return
 
         item = self.currentItem()
-        if not item: # If not selected Item, take the first one
+        if not item:  # If not selected Item, take the first one
             item = self.labelList.item(self.labelList.count()-1)
 
         difficult = self.diffcButton.isChecked()
@@ -1095,22 +1101,22 @@ class MainWindow(QMainWindow, WindowMixin):
 
         position MUST be in global coordinates.
         """
-        if not self.useDefaultLabelCheckbox.isChecked() or not self.defaultLabelTextLine.text():
-            if len(self.labelHist) > 0:
-                self.labelDialog = LabelDialog(
-                    parent=self, listItem=self.labelHist)
+        # if not self.useDefaultLabelCheckbox.isChecked() or not self.defaultLabelTextLine.text():
+        if len(self.labelHist) > 0:
+            self.labelDialog = LabelDialog(
+                parent=self, listItem=self.labelHist)
 
-            # Sync single class mode from PR#106
-            if self.singleClassMode.isChecked() and self.lastLabel:
-                text = self.lastLabel
-            else:
-                text = self.labelDialog.popUp(text=self.prevLabelText)
-                self.lastLabel = text
+        # Sync single class mode from PR#106
+        if self.singleClassMode.isChecked() and self.lastLabel:
+            text = self.lastLabel
         else:
-            text = self.defaultLabelTextLine.text()
+            text = self.labelDialog.popUp(text=self.prevLabelText)
+            self.lastLabel = text
+        # else:
+        #     text = self.defaultLabelTextLine.text()
 
         # Add Chris
-        self.diffcButton.setChecked(False)
+        # self.diffcButton.setChecked(False)
         if text is not None:
             self.prevLabelText = text
             generate_color = generateColorByText(text)
@@ -1261,6 +1267,9 @@ class MainWindow(QMainWindow, WindowMixin):
                 self.aligned_points = np.array(self.label_info[filename]['aligned'])
             elif (self.suggest_label_info is not None) and (filename in self.suggest_label_info.keys()):
                 self.aligned_points = np.array(self.suggest_label_info[filename]['aligned'])
+
+                self.label_info[filename] = self.suggest_label_info[filename]
+
 
             self.labelFile = None
             self.canvas.verified = False

@@ -31,7 +31,8 @@ class Canvas(QWidget):
 
     CREATE, EDIT = list(range(2))
 
-    epsilon = 11.0
+    epsilon = 3.0
+    scale_factor = 1.0
 
     def __init__(self, *args, **kwargs):
         super(Canvas, self).__init__(*args, **kwargs)
@@ -130,7 +131,7 @@ class Canvas(QWidget):
                     # Project the point to the pixmap's edges.
                     pos = self.intersectionPoint(self.current[-1], pos)
                 elif len(self.current) > 1 and self.closeEnough(pos, self.current[0]):
-                    # Attract line to starting point and colorise to alert the
+                    # Attract line to starting point and colorize to alert the
                     # user:
                     pos = self.current[0]
                     color = self.current.line_color
@@ -478,6 +479,7 @@ class Canvas(QWidget):
         myfont.setPointSizeF(35)
         myfont.setBold(True)
         p.setFont(myfont)
+        print('Scale canvas:', self.scale)
 
         p.scale(self.scale, self.scale)
         p.translate(self.offsetToCenter())
@@ -486,7 +488,7 @@ class Canvas(QWidget):
         for shape in self.shapes:
             if (shape.selected or not self._hideBackround) and self.isVisible(shape):
                 shape.fill = shape.selected or shape == self.hShape
-                shape.paint(p)
+                shape.paint(p, self.get_pen_width())
         if self.phase == 0:
             photo_type_text = "FRONT"
             if self.photo_type == 1:
@@ -499,10 +501,10 @@ class Canvas(QWidget):
                 p.drawText(QRectF(0, 0, self.pixmap.width(), self.pixmap.height()), photo_type_text, t)
 
         if self.current:
-            self.current.paint(p)
-            self.line.paint(p)
+            self.current.paint(p, self.get_pen_width())
+            self.line.paint(p, self.get_pen_width())
         if self.selectedShapeCopy:
-            self.selectedShapeCopy.paint(p)
+            self.selectedShapeCopy.paint(p, self.get_pen_width())
 
         # Paint rect
         if self.current is not None and len(self.line) == 2:
@@ -510,8 +512,11 @@ class Canvas(QWidget):
             rightBottom = self.line[1]
             rectWidth = rightBottom.x() - leftTop.x()
             rectHeight = rightBottom.y() - leftTop.y()
-            p.setPen(self.drawingRectColor)
-            brush = QBrush(Qt.BDiagPattern)
+            pen = QPen(self.drawingRectColor)
+            # Try using integer sizes for smoother drawing(?)
+            pen.setWidth(self.get_pen_width())
+            p.setPen(pen)
+            brush = QBrush()
             p.setBrush(brush)
             p.drawRect(leftTop.x(), leftTop.y(), rectWidth, rectHeight)
             print(2)
@@ -522,7 +527,9 @@ class Canvas(QWidget):
             # p.drawPolygon(polygon)
 
         if self.drawing() and not self.prevPoint.isNull() and not self.outOfPixmap(self.prevPoint):
-            p.setPen(QColor(0, 0, 0))
+            pen = QPen(QColor(0, 0, 0))
+            pen.setWidth(self.get_pen_width())
+            p.setPen(pen)
             p.drawLine(self.prevPoint.x(), 0, self.prevPoint.x(), self.pixmap.height())
             p.drawLine(0, self.prevPoint.y(), self.pixmap.width(), self.prevPoint.y())
             print(1)
@@ -543,9 +550,15 @@ class Canvas(QWidget):
         """Convert from widget-logical coordinates to painter-logical coordinates."""
         return point / self.scale - self.offsetToCenter()
 
+    def get_pen_width(self):
+        area = super(Canvas, self).size()
+        ah = area.height()
+        return ah * self.scale_factor / 1000
+
     def offsetToCenter(self):
         s = self.scale
         area = super(Canvas, self).size()
+        print('Area:', area)
         w, h = self.pixmap.width() * s, self.pixmap.height() * s
         aw, ah = area.width(), area.height()
         x = (aw - w) / (2 * s) if aw > w else 0
@@ -702,7 +715,6 @@ class Canvas(QWidget):
             self.moveOnePixel('Up')
         elif key == Qt.Key_Down and modifiers == Qt.ControlModifier and self.selectedShape:
             self.moveOnePixel('Down')
-
 
     def get_index_selected_shape(self):
         for idx in range(len(self.shapes)):

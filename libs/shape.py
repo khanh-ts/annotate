@@ -35,7 +35,7 @@ class Shape(object):
     vertex_fill_color = DEFAULT_VERTEX_FILL_COLOR
     hvertex_fill_color = DEFAULT_HVERTEX_FILL_COLOR
     point_type = P_ROUND
-    point_size = 15
+    point_size = 5
     scale = 1.0
 
     def __init__(self, label=None, line_color=None, difficult=False, paintLabel=False):
@@ -84,12 +84,14 @@ class Shape(object):
     def setOpen(self):
         self._closed = False
 
-    def paint(self, painter):
+    def paint(self, painter, pen_width=1.0):
         if self.points:
+            print('Scale: ', self.scale)
+            print('Length: ', len(self.points))
             color = self.select_line_color if self.selected else self.line_color
             pen = QPen(color)
             # Try using integer sizes for smoother drawing(?)
-            pen.setWidth(max(1, int(round(10.0 / self.scale))))
+            pen.setWidth(pen_width)  # max(0.98, int(round(0.8 / self.scale))))
             painter.setPen(pen)
 
             line_path = QPainterPath()
@@ -99,7 +101,7 @@ class Shape(object):
             # Uncommenting the following line will draw 2 paths
             # for the 1st vertex, and make it non-filled, which
             # may be desirable.
-            #self.drawVertex(vrtx_path, 0)
+            # self.drawVertex(vrtx_path, 0)
 
             for i, p in enumerate(self.points):
                 line_path.lineTo(p)

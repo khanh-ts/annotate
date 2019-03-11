@@ -6,6 +6,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/annotate.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/canvas.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/canvas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/shape.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/shape.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/annotate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="1287" column="16" selection-start-line="1287" selection-start-column="16" selection-end-line="1287" selection-end-column="16" />
+            <state relative-caret-position="466">
+              <caret line="192" column="62" selection-start-line="192" selection-start-column="62" selection-end-line="192" selection-end-column="62" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
@@ -31,10 +34,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/stringBundle.py">
+        <entry file="file:///media/data/code/annotate/libs/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1653">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="721">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
@@ -42,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/strings/strings.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            <state relative-caret-position="571">
+              <caret line="51" column="8" selection-start-line="51" selection-end-line="51" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -51,8 +54,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+            <state relative-caret-position="522">
+              <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///media/data/code/annotate/libs/stringBundle.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1653">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
@@ -76,19 +88,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/shape.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="678">
+              <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/libs/canvas.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1073">
-              <caret line="38" column="27" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="27" />
+            <state relative-caret-position="1962">
+              <caret line="494" column="40" lean-forward="true" selection-start-line="494" selection-start-column="40" selection-end-line="494" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/shape.py">
+        <entry file="file:///media/data/code/annotate/libs/shape.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3915">
-              <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+            <state relative-caret-position="494">
+              <caret line="96" column="38" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -97,36 +118,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Ctrl+R</find>
-      <find>Ctrl+t</find>
-      <find>Ctrl+</find>
-      <find>self.settings.get</find>
-      <find>action(</find>
-      <find>ctrl+r</find>
-      <find>Qt.Key_Control</find>
-      <find>Yes</find>
-      <find>save</find>
-      <find>self.label</find>
-      <find>self.label_info</find>
-      <find>.csv</find>
-      <find>self.setting</find>
-      <find>self.mImgList</find>
-      <find>self.current</find>
-      <find>self.curr</find>
-      <find>self.curren</find>
-      <find>self.cur</find>
-      <find>self.curr_index</find>
-      <find>self.settings['c</find>
       <find>self.suggest_corners</find>
-      <find>def __init</find>
       <find>self.settings['cu</find>
       <find>.json</find>
       <find>photo_type</find>
       <find>photo_type = 0</find>
       <find>self.phase =</find>
       <find>self.rotate</find>
-      <find>self.phase =</find>
       <find>rotate</find>
+      <find>dock</find>
+      <find>show</find>
+      <find>showHide</find>
+      <find>toggleViewAction</find>
+      <find>filedock</find>
+      <find>dockF</find>
+      <find>self.curr_index</find>
+      <find>http</find>
+      <find>self.label_info</find>
+      <find>def load_file</find>
+      <find>def __init</find>
+      <find>$user_</find>
+      <find>$user</find>
+      <find>Verti</find>
+      <find>Ver</find>
+      <find>self.line</find>
+      <find>self.line</find>
+      <find>self.line.paint</find>
+      <find>mouse</find>
+      <find>self.scale</find>
+      <find>paint(</find>
+      <find>.paint(</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -138,13 +159,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/libs/shape.py" />
         <option value="$PROJECT_DIR$/libs/utils.py" />
         <option value="$PROJECT_DIR$/libs/labelDialog.py" />
-        <option value="$PROJECT_DIR$/libs/canvas.py" />
         <option value="$PROJECT_DIR$/labelImg.py" />
         <option value="$PROJECT_DIR$/resources/strings/strings.properties" />
+        <option value="$PROJECT_DIR$/libs/settings.py" />
         <option value="$PROJECT_DIR$/annotate.py" />
+        <option value="$PROJECT_DIR$/libs/shape.py" />
+        <option value="/media/data/code/annotate/libs/shape.py" />
+        <option value="$PROJECT_DIR$/libs/canvas.py" />
       </list>
     </option>
   </component>
@@ -155,8 +178,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="2756" />
-    <option name="height" value="1755" />
+    <option name="x" value="1220" />
+    <option name="y" value="553" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -434,12 +459,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/annotate.py</url>
-          <line>1228</line>
+          <line>1234</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/annotate.py</url>
-          <line>1651</line>
+          <line>1660</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -449,8 +474,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/annotate.py</url>
-          <line>1321</line>
+          <line>1330</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/annotate.py</url>
+          <line>1570</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/annotate.py</url>
+          <line>1526</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -526,43 +561,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/data/code/annotate/libs/settings.py" />
-    <entry file="file:///media/data/code/annotate/libs/stringBundle.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/faceid/lib/python3.7/site-packages/PyQt5/QtGui.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="213" column="8" selection-start-line="213" selection-start-column="8" selection-end-line="213" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/annotate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="1287" column="16" selection-start-line="1287" selection-start-column="16" selection-end-line="1287" selection-end-column="16" />
-          <folding>
-            <element signature="e#46#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/faceid/lib/python3.7/site-packages/PyQt5/QtGui.pyi" />
     <entry file="file://$PROJECT_DIR$/libs/stringBundle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1653">
+          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/data/code/annotate/libs/stringBundle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1653">
           <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/strings/strings.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -580,17 +590,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/canvas.py">
+    <entry file="file://$PROJECT_DIR$/resources/strings/strings.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1073">
-          <caret line="38" column="27" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="27" />
+        <state relative-caret-position="571">
+          <caret line="51" column="8" selection-start-line="51" selection-end-line="51" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/2147434893/PyQt5/QtWidgets/QDockWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="82" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-957" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/data/code/annotate/libs/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="721">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="192" column="62" selection-start-line="192" selection-start-column="62" selection-end-line="192" selection-end-column="62" />
+          <folding>
+            <element signature="e#46#65#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libs/shape.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3915">
-          <caret line="136" column="40" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+        <state relative-caret-position="678">
+          <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/data/code/annotate/libs/shape.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="96" column="38" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/canvas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1962">
+          <caret line="494" column="40" lean-forward="true" selection-start-line="494" selection-start-column="40" selection-end-line="494" selection-end-column="40" />
         </state>
       </provider>
     </entry>
