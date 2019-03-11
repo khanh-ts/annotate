@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="" />
+    <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/2_run_windows.bat" beforeDir="false" afterPath="$PROJECT_DIR$/2_run_windows.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/annotate.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotate.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,11 +19,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/annotate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="192" column="62" selection-start-line="192" selection-start-column="62" selection-end-line="192" selection-end-column="62" />
+            <state relative-caret-position="541">
+              <caret line="343" column="56" lean-forward="true" selection-start-line="343" selection-start-column="56" selection-end-line="343" selection-end-column="56" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/2_run_windows.bat">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="75" selection-start-column="75" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -53,15 +65,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file:///media/data/code/annotate/libs/stringBundle.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1653">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/utils.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2465">
@@ -88,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/canvas.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1962">
-              <caret line="494" column="40" lean-forward="true" selection-start-line="494" selection-start-column="40" selection-end-line="494" selection-end-column="40" />
+            <state relative-caret-position="524">
+              <caret line="555" column="36" selection-start-line="555" selection-start-column="36" selection-end-line="555" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -110,10 +113,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.suggest_corners</find>
-      <find>self.settings['cu</find>
-      <find>.json</find>
-      <find>photo_type</find>
       <find>photo_type = 0</find>
       <find>self.phase =</find>
       <find>self.rotate</find>
@@ -140,6 +139,10 @@
       <find>self.scale</find>
       <find>paint(</find>
       <find>.paint(</find>
+      <find>phase=1</find>
+      <find>def get_pen_</find>
+      <find>Canvas</find>
+      <find>self.user_</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -156,10 +159,11 @@
         <option value="$PROJECT_DIR$/labelImg.py" />
         <option value="$PROJECT_DIR$/resources/strings/strings.properties" />
         <option value="$PROJECT_DIR$/libs/settings.py" />
-        <option value="$PROJECT_DIR$/annotate.py" />
         <option value="$PROJECT_DIR$/libs/shape.py" />
         <option value="/media/data/code/annotate/libs/shape.py" />
         <option value="$PROJECT_DIR$/libs/canvas.py" />
+        <option value="$PROJECT_DIR$/annotate.py" />
+        <option value="$PROJECT_DIR$/2_run_windows.bat" />
       </list>
     </option>
   </component>
@@ -344,7 +348,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/annotate.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="1 1.0" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -420,14 +424,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="3840" height="2110" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26568267" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26568267" />
       <window_info id="Structure" order="1" weight="0.20875067" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3288337" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978678" visible="true" weight="0.31101513" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978678" weight="0.31101513" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49261993" weight="0.3347732" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -451,12 +454,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/annotate.py</url>
-          <line>1234</line>
+          <line>1235</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/annotate.py</url>
-          <line>1660</line>
+          <line>1661</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -466,17 +469,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/annotate.py</url>
-          <line>1330</line>
+          <line>1331</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/annotate.py</url>
-          <line>1570</line>
+          <line>1571</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/annotate.py</url>
-          <line>1526</line>
+          <line>1527</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
@@ -615,16 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/annotate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="192" column="62" selection-start-line="192" selection-start-column="62" selection-end-line="192" selection-end-column="62" />
-          <folding>
-            <element signature="e#46#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libs/shape.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="678">
@@ -641,8 +634,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/libs/canvas.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1962">
-          <caret line="494" column="40" lean-forward="true" selection-start-line="494" selection-start-column="40" selection-end-line="494" selection-end-column="40" />
+        <state relative-caret-position="524">
+          <caret line="555" column="36" selection-start-line="555" selection-start-column="36" selection-end-line="555" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="343" column="56" lean-forward="true" selection-start-line="343" selection-start-column="56" selection-end-line="343" selection-end-column="56" />
+          <folding>
+            <element signature="e#46#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2_run_windows.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="75" selection-start-column="75" selection-end-column="75" />
         </state>
       </provider>
     </entry>
