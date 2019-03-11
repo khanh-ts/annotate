@@ -1,0 +1,1 @@
+%USERPROFILE%\Miniconda3\Scripts\activate label && python annotate.py

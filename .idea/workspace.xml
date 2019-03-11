@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/annotate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/annotate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/annotate.py" beforeDir="false" afterPath="$PROJECT_DIR$/annotate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/canvas.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/canvas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/shape.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/shape.py" afterDir="false" />
-    </list>
+    <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
