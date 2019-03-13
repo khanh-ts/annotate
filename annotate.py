@@ -1503,9 +1503,9 @@ class MainWindow(QMainWindow, WindowMixin):
     def open_dir_dialog(self):
         continue_condition = True
         while continue_condition:
-            images_dir = self.settings.get('images_dir', default= "https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data01/images/")
+            images_dir = self.settings.get('images_dir', default= "https://192.168.1.184:48000/user/$user/files/working/common/hotdata/VNIDCards/data01/images/")
             # bbox_filename = self.settings.get('bbox_filename', default="https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorners_splited_csv/xxx.csv")
-            bbox_filename = self.settings.get('bbox_filename', default="https://202.161.73.78:18008/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorner_labels/Khanh.json")
+            bbox_filename = self.settings.get('bbox_filename', default="https://192.168.1.184:48000/user/$user/files/working/common/hotdata/VNIDCards/data02/idcorner_labels/Khanh.json")
             images_dir, bbox_filename, username, password, label_filename, ok = \
                 OpenLabelDialog.get_result(images_dir, bbox_filename)
             self.settings['images_dir'] = images_dir
