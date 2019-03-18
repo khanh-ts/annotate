@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/annotate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1034">
-              <caret line="1515" column="41" lean-forward="true" selection-start-line="1515" selection-start-column="41" selection-end-line="1515" selection-end-column="41" />
+            <state relative-caret-position="1498">
+              <caret line="1531" column="49" lean-forward="true" selection-start-line="1531" selection-start-column="49" selection-end-line="1531" selection-end-column="49" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
@@ -421,7 +421,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="3840" height="2110" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26568267" />
       <window_info id="Structure" order="1" weight="0.20875067" />
@@ -590,8 +589,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/annotate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1034">
-          <caret line="1515" column="41" lean-forward="true" selection-start-line="1515" selection-start-column="41" selection-end-line="1515" selection-end-column="41" />
+        <state relative-caret-position="1498">
+          <caret line="1531" column="49" lean-forward="true" selection-start-line="1531" selection-start-column="49" selection-end-line="1531" selection-end-column="49" />
           <folding>
             <element signature="e#46#65#0" expanded="true" />
           </folding>
