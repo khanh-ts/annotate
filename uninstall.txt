@@ -1,0 +1,1 @@
+ delete/remove the folder $HOME/miniconda3 (or %USERPROFILE%\miniconda3)
