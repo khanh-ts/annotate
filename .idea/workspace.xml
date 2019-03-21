@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/data/predefined_classes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/predefined_classes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/canvas.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/canvas.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/annotate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="992" column="22" selection-start-line="992" selection-start-column="13" selection-end-line="992" selection-end-column="22" />
+            <state relative-caret-position="396">
+              <caret line="866" column="28" selection-start-line="866" selection-start-column="28" selection-end-line="866" selection-end-column="28" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
@@ -27,20 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data/predefined_classes.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2_run_windows.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="75" selection-start-column="75" selection-end-column="75" />
+            <state relative-caret-position="29">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -93,17 +84,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/shape.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2958">
-              <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+            <state relative-caret-position="765">
+              <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/libs/canvas.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16066">
-              <caret line="555" column="36" selection-start-line="555" selection-start-column="36" selection-end-line="555" selection-end-column="36" />
+            <state relative-caret-position="869">
+              <caret line="253" selection-start-line="253" selection-end-line="254" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -112,10 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rotate</find>
-      <find>dock</find>
-      <find>show</find>
-      <find>showHide</find>
       <find>toggleViewAction</find>
       <find>filedock</find>
       <find>dockF</find>
@@ -142,6 +129,10 @@
       <find>load_file</find>
       <find>open_dir</find>
       <find>labelList</find>
+      <find>left</find>
+      <find>self.setCre</find>
+      <find>def setCre</find>
+      <find>move</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -160,10 +151,10 @@
         <option value="$PROJECT_DIR$/libs/settings.py" />
         <option value="$PROJECT_DIR$/libs/shape.py" />
         <option value="/media/data/code/annotate/libs/shape.py" />
-        <option value="$PROJECT_DIR$/libs/canvas.py" />
         <option value="$PROJECT_DIR$/2_run_windows.bat" />
         <option value="$PROJECT_DIR$/annotate.py" />
         <option value="$PROJECT_DIR$/data/predefined_classes.txt" />
+        <option value="$PROJECT_DIR$/libs/canvas.py" />
       </list>
     </option>
   </component>
@@ -353,7 +344,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/annotate.py" />
-      <option name="PARAMETERS" value="0 1.5" />
+      <option name="PARAMETERS" value="1 1.5" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -431,12 +422,12 @@
     <frame x="0" y="0" width="3840" height="2110" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26568267" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26568267" />
       <window_info id="Structure" order="1" weight="0.20875067" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3288337" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978678" weight="0.31101513" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978678" visible="true" weight="0.31101513" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49261993" weight="0.3347732" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -580,16 +571,6 @@
     </entry>
     <entry file="file:///media/data/code/annotate/libs/settings.py" />
     <entry file="file:///media/data/code/annotate/libs/shape.py" />
-    <entry file="file://$PROJECT_DIR$/annotate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="992" column="22" selection-start-line="992" selection-start-column="13" selection-end-line="992" selection-end-column="22" />
-          <folding>
-            <element signature="e#46#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/d/code/annotate/libs/canvas.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2233">
@@ -599,8 +580,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/2_run_windows.bat">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="75" selection-start-column="75" selection-end-column="75" />
+        <state relative-caret-position="29">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -639,24 +620,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/predefined_classes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/annotate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="866" column="28" selection-start-line="866" selection-start-column="28" selection-end-line="866" selection-end-column="28" />
+          <folding>
+            <element signature="e#46#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/libs/shape.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2958">
-          <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+        <state relative-caret-position="765">
+          <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libs/canvas.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16066">
-          <caret line="555" column="36" selection-start-line="555" selection-start-column="36" selection-end-line="555" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/predefined_classes.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="869">
+          <caret line="253" selection-start-line="253" selection-end-line="254" selection-end-column="41" />
         </state>
       </provider>
     </entry>

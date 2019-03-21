@@ -67,7 +67,7 @@ class Canvas(QWidget):
         self.drawSquare = False
         self.loading = False
         self.photo_type_lst = ['front', 'back', 'invalid']
-
+        self.edit_mode = 0
 
     def get_photo_type_str(self):
         return self.photo_type_lst[self.photo_type]
@@ -229,6 +229,7 @@ class Canvas(QWidget):
                 self.selectShapePoint(pos)
                 self.prevPoint = pos
                 self.repaint()
+
         elif ev.button() == Qt.RightButton and self.editing():
             self.selectShapePoint(pos)
             self.prevPoint = pos
@@ -250,8 +251,8 @@ class Canvas(QWidget):
                 self.overrideCursor(CURSOR_GRAB)
         elif ev.button() == Qt.LeftButton:
             pos = self.transformPos(ev.pos())
-            if self.drawing():
-                self.handleDrawing(pos)
+            # if self.drawing():
+            #     self.handleDrawing(pos)
 
     def endMove(self, copy=False):
         print('end move')
@@ -278,6 +279,7 @@ class Canvas(QWidget):
 
     def handleDrawing(self, pos):
         if self.current and self.current.reachMaxPoints() is False:
+            print("Handle", self.current, self.current.reachMaxPoints())
             initPos = self.current[0]
             minX = initPos.x()
             minY = initPos.y()
