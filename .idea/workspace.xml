@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="" />
+    <list default="true" id="74d0a0cf-7cf1-4f6b-8839-09cd6daf5669" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/data/predefined_classes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/predefined_classes.txt" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/annotate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="903">
-              <caret line="1342" lean-forward="true" selection-start-line="1342" selection-end-line="1342" />
+            <state relative-caret-position="559">
+              <caret line="992" column="22" selection-start-line="992" selection-start-column="13" selection-end-line="992" selection-end-column="22" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
@@ -25,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///media/d/code/annotate/libs/canvas.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/predefined_classes.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="78" selection-start-line="78" selection-end-line="78" />
+            <state relative-caret-position="116">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -46,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/1_setup_windows.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+            <state relative-caret-position="87">
+              <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -110,7 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.rotate</find>
       <find>rotate</find>
       <find>dock</find>
       <find>show</find>
@@ -140,6 +141,7 @@
       <find>.json</find>
       <find>load_file</find>
       <find>open_dir</find>
+      <find>labelList</find>
     </findStrings>
     <replaceStrings>
       <replace>filepath</replace>
@@ -161,6 +163,7 @@
         <option value="$PROJECT_DIR$/libs/canvas.py" />
         <option value="$PROJECT_DIR$/2_run_windows.bat" />
         <option value="$PROJECT_DIR$/annotate.py" />
+        <option value="$PROJECT_DIR$/data/predefined_classes.txt" />
       </list>
     </option>
   </component>
@@ -188,6 +191,11 @@
             <path>
               <item name="annotate" type="b2602c69:ProjectViewProjectNode" />
               <item name="annotate" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="annotate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="annotate" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="annotate" type="b2602c69:ProjectViewProjectNode" />
@@ -423,7 +431,7 @@
     <frame x="0" y="0" width="3840" height="2110" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26568267" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26568267" />
       <window_info id="Structure" order="1" weight="0.20875067" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -557,13 +565,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/data/code/annotate/libs/stringBundle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1653">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///media/data/code/annotate/libs/stringBundle.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/2147434893/PyQt5/QtWidgets/QDockWidget.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
@@ -576,10 +578,22 @@
         <state relative-caret-position="-957" />
       </provider>
     </entry>
-    <entry file="file:///media/data/code/annotate/libs/settings.py">
+    <entry file="file:///media/data/code/annotate/libs/settings.py" />
+    <entry file="file:///media/data/code/annotate/libs/shape.py" />
+    <entry file="file://$PROJECT_DIR$/annotate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="559">
+          <caret line="992" column="22" selection-start-line="992" selection-start-column="13" selection-end-line="992" selection-end-column="22" />
+          <folding>
+            <element signature="e#46#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/d/code/annotate/libs/canvas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2233">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
         </state>
       </provider>
     </entry>
@@ -592,8 +606,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/1_setup_windows.bat">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+        <state relative-caret-position="87">
+          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -639,27 +653,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/data/code/annotate/libs/shape.py">
+    <entry file="file://$PROJECT_DIR$/data/predefined_classes.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2755">
-          <caret line="96" column="38" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/d/code/annotate/libs/canvas.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/annotate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="1342" lean-forward="true" selection-start-line="1342" selection-end-line="1342" />
-          <folding>
-            <element signature="e#46#65#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="116">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
